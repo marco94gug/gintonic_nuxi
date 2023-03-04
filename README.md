@@ -1,6 +1,6 @@
 ## Migration from Nuxt2 to Nuxt3
 
-Try some ways to make the best migration from Nuxt2 with Vuex Store to Nuxt3
+Try some ways to make the best migration from Nuxt2 to Nuxt3
 
 1. My first step: check the differences between Options API and Composition API, decided to follow the last one;
 
