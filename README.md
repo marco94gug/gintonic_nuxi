@@ -1,4 +1,4 @@
-## Migration from Nuxt2 to Nuxt3
+# Migration from Nuxt2 to Nuxt3
 
 Try some ways to make the best migration from Nuxt2 to Nuxt3
 
