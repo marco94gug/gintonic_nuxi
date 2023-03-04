@@ -1,42 +1,14 @@
-# Nuxt 3 Minimal Starter
+#Migration from Nuxt2 to Nuxt3
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+try some ways to make the best migration from Nuxt2 with Vuex Store to Nuxt3
 
-## Setup
+    - My first step: check the differences between Options API and Composition API, decided to follow the last one;
 
-Make sure to install the dependencies:
+    - Considering to convert my Vuex Store in Pinia Store due to maintaning SSR status, with useState maybe we lose it. `to be further explored`;
 
-```bash
-# yarn
-yarn install
+    - Using `Composables` to create something like `axios instances` but using `useFetch`
+        *ref:
+            Composables: https://nuxt.com/docs/guide/directory-structure/composables#composables-directory
+            useFetch: https://nuxt.com/docs/api/composables/use-fetch#usefetch
 
-# npm
-npm install
-
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+    - Founds some complications with .env configuration. `to be further explored`;
