@@ -1,5 +1,6 @@
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig();
+
   const headers = {
     "Content-Type": "application/json",
     "X-RapidAPI-Key": config.public.apiSecret,

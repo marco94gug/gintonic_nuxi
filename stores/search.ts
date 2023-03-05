@@ -24,7 +24,6 @@ const useSearchStore = defineStore("search", {
 
     //async Actions:
     async loadSearchResults(searchParam: string) {
-      const nuxtApp = useNuxtApp();
       try {
         const res = await useRapidFetch("search.php", {
           params: {
