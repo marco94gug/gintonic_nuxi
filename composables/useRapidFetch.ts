@@ -1,9 +1,10 @@
 export const useRapidFetch = (request: any, opts: any) => {
+  const runtimeConfig = useRuntimeConfig();
   return useFetch(request, {
-    baseURL: "https://the-cocktail-db.p.rapidapi.com",
+    baseURL: runtimeConfig.public.apiBase,
     headers: {
       "Content-Type": "application/json",
-      "X-RapidAPI-Key": "5d99ed1e87msh336ffda5f50f370p177d16jsnc01cfe766594",
+      "X-RapidAPI-Key": runtimeConfig.public.apiSecret,
       "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
     },
     ...opts,

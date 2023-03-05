@@ -6,8 +6,8 @@ export default defineNuxtConfig({
 
     // Keys within public are also exposed client-side
     public: {
-      apiBase: process.env.BASE_RAPID_URL,
-      apiSecret: "5d99ed1e87msh336ffda5f50f370p177d16jsnc01cfe766594",
+      apiBase: process.env.NUXT_PUBLIC_API_RAPID_BASE,
+      apiSecret: process.env.NUXT_API_SECRET,
     },
   },
   css: ["~/styles/global.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
