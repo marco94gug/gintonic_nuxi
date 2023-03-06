@@ -15,4 +15,4 @@ Try some ways to make the best migration from Nuxt2 to Nuxt3
 6. Created pages and resolved the bug relates 'pages not found - robots.txt', fixed installing robots nuxt module
 
 7. Fixed the bug on middleware where when you changed the route you lost the data from Pinia store,
-   _the problem was related to custom useFetch maybe it wasn't able to read config.public from runtime `to be further explored`_
+   **_the problem was related to custom useFetch maybe it wasn't able to read config.public from runtime `to be further explored`_**
