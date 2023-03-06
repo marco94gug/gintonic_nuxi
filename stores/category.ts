@@ -2,13 +2,12 @@ import { defineStore } from "pinia";
 import { CategoryListType, CategoryResponse } from "~~/types/category";
 
 export const useCategoryStore = defineStore("category", {
-  state: () => {
-    return {
+  state: () =>
+    ({
       categoryList: {},
       filteredByCategory: {},
       drinksResults: {},
-    } as CategoryListType;
-  },
+    } as CategoryListType),
 
   getters: {
     getCategoryList: (state) => state.categoryList,
