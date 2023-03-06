@@ -25,7 +25,7 @@
         }`"
       >
         <li
-          v-for="category in categoryList.drinks"
+          v-for="category in categoryStore?.getCategoryList?.drinks"
           @click="handleCategoryClick(category)"
         >
           {{ category.strCategory }}
@@ -38,22 +38,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 import { buildUrlPath } from "../services/url";
 import { DrinksType } from "../types/category";
 
 import { useNavBarStore } from "../stores/navbar";
+import { useCategoryStore } from "~~/stores/category";
 
-const nuxtApp = useNuxtApp();
-const categoryList = ref({
-  drinks: [
-    {
-      strCategory: "prova",
-    },
-  ],
-});
 const router = useRouter();
 const navbarStore = useNavBarStore();
+const categoryStore = useCategoryStore();
 
 //Functions:
 function setActiveMenu(): void {
@@ -65,9 +58,9 @@ function setActiveMenu(): void {
     document.body.style.overflow = "auto";
   }
 
-  if (categoryList.value) {
-    navbarStore.setCategoryListClose();
-  }
+  // if (categoryStore.getCategoryList.drinks) {
+  //   navbarStore.setCategoryListClose();
+  // }
 }
 
 function handleCategoriesClick(): void {

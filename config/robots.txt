@@ -1,0 +1,5 @@
+export default {
+  modules: [
+    ['@nuxtjs/robots', { configPath: "~/config/robots.config" }]
+  ]
+}

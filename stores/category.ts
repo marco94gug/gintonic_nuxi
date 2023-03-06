@@ -1,10 +1,5 @@
 import { defineStore } from "pinia";
-import {
-  CategoryListType,
-  CategoryResponse,
-  FilteredDrinkByCategory,
-} from "~~/types/category";
-import { drinksListType } from "~~/types/drinks";
+import { CategoryListType, CategoryResponse } from "~~/types/category";
 
 export const useCategoryStore = defineStore("category", {
   state: () => {
@@ -22,22 +17,24 @@ export const useCategoryStore = defineStore("category", {
   },
 
   actions: {
-    //Mutations
+    // Mutations
     clearCategoryStore() {
       this.$reset();
     },
 
     //Actions
     async load() {
+      const config = useRuntimeConfig();
       try {
-        const res = await useFreeFetch("list.php", {
+        const res = await useFetch("list.php", {
+          baseURL: config.public.apiFreeBase,
           params: {
             c: "list",
           },
         });
 
-        const categoryList = res.data.value;
-        this.categoryList = categoryList;
+        const categoryRes = res.data.value as CategoryResponse;
+        this.categoryList = categoryRes;
       } catch (error) {
         console.error(error);
       }

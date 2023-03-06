@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@pinia/nuxt"],
+  modules: ["@pinia/nuxt", "@nuxtjs/robots"],
   runtimeConfig: {
     apiSecret: process.env.NUXT_API_SECRET,
     // The private keys which are only available server-side
