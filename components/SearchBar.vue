@@ -16,7 +16,7 @@
     <div v-if="isResultsVisible()" class="results">
       <ul>
         <li
-          v-for="drink in searchStore.getDrinksListResult.drinks"
+          v-for="drink in searchStore.getDrinksListResult?.drinks"
           :id="drink.idDrink"
           @click="handleDrinkClick"
         >
@@ -29,12 +29,14 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
+import { useCategoryStore } from "~~/stores/category";
 import { useNavBarStore } from "~~/stores/navbar";
 import { useSearchStore } from "../stores/search";
 
 const inputValue = ref("");
 const navbarStore = useNavBarStore();
 const searchStore = useSearchStore();
+const categoryStore = useCategoryStore();
 const router = useRouter();
 
 //Functions
@@ -45,7 +47,7 @@ const handleOnSearchInput = (input: string): void => {
   } else {
     searchStore.clearSearchResults();
   }
-  console.log(searchStore.getDrinksListResult.drinks);
+  console.log(searchStore.getDrinksListResult?.drinks);
 };
 
 const closeAllMenu = () => {
@@ -55,6 +57,7 @@ const closeAllMenu = () => {
 
 const handleSubmitEvent = (e: Event) => {
   e.preventDefault();
+  categoryStore.clearCategoryStore();
   // this.$store.commit("category/CLEAR_CATEGORY_FILTERED")
   router.push({
     name: "search-page",
@@ -75,7 +78,7 @@ const clearSearchBar = (): void => {
 };
 
 const isResultsVisible = (): boolean => {
-  return Boolean(searchStore.getDrinksListResult.drinks);
+  return Boolean(searchStore.getDrinksListResult?.drinks);
 };
 </script>
 

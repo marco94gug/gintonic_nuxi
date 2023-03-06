@@ -4,7 +4,7 @@ import { drinksListType } from "~~/types/drinks";
 const useSearchStore = defineStore("search", {
   state: () => {
     return {
-      drinksList: {} as drinksListType,
+      drinksList: {} as drinksListType | null,
     };
   },
 
@@ -14,9 +14,6 @@ const useSearchStore = defineStore("search", {
 
   actions: {
     //Mutations:
-    setSearchResults(payload: drinksListType) {
-      this.drinksList = payload;
-    },
 
     clearSearchResults() {
       this.$reset();
@@ -25,13 +22,14 @@ const useSearchStore = defineStore("search", {
     //async Actions:
     async loadSearchResults(searchParam: string) {
       try {
-        const res = await useRapidFetch("search.php", {
+        const res = await useFetch<drinksListType>("search.php", {
+          baseURL: useRuntimeConfig().public.apiFreeBase,
           params: {
             s: searchParam,
           },
         });
         const resultsDrinks = res.data.value;
-        this.setSearchResults(resultsDrinks);
+        this.drinksList = resultsDrinks;
         console.log(this.drinksList);
       } catch (error) {
         console.error(error);

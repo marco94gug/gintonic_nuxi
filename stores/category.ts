@@ -1,5 +1,10 @@
+import { _AsyncData } from "nuxt/dist/app/composables/asyncData";
 import { defineStore } from "pinia";
-import { CategoryListType, CategoryResponse } from "~~/types/category";
+import {
+  CategoryListType,
+  CategoryResponse,
+  FilteredDrinkByCategory,
+} from "~~/types/category";
 
 export const useCategoryStore = defineStore("category", {
   state: () =>
@@ -11,7 +16,7 @@ export const useCategoryStore = defineStore("category", {
 
   getters: {
     getCategoryList: (state) => state.categoryList,
-    getFilteredByCaategory: (state) => state.filteredByCategory,
+    getFilteredByCategory: (state) => state.filteredByCategory,
     getDrinksResults: (state) => state.drinksResults,
   },
 
@@ -23,16 +28,15 @@ export const useCategoryStore = defineStore("category", {
 
     //Actions
     async load() {
-      const config = useRuntimeConfig();
       try {
-        const res = await useFetch("list.php", {
-          baseURL: config.public.apiFreeBase,
+        const res = await useFetch<CategoryResponse>("list.php", {
+          baseURL: useRuntimeConfig().public.apiFreeBase,
           params: {
             c: "list",
           },
         });
 
-        const categoryRes = res.data.value as CategoryResponse;
+        const categoryRes = res.data.value;
         this.categoryList = categoryRes;
       } catch (error) {
         console.error(error);
@@ -41,7 +45,13 @@ export const useCategoryStore = defineStore("category", {
 
     async loadCategoryFilter(category: string) {
       try {
-        const res = await useRapidFetch("filter.php", {
+        const res = await useFetch<FilteredDrinkByCategory>("filter.php", {
+          baseURL: useRuntimeConfig().public.apiBase,
+          headers: {
+            "Content-Type": "application/json",
+            "X-RapidAPI-Key": useRuntimeConfig().public.apiSecret,
+            "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
+          },
           params: {
             c: category,
           },

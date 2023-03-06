@@ -1,4 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { resolve } from "path";
+import { createCommonJS } from "mlly";
+const { __dirname } = createCommonJS(import.meta.url);
+
 export default defineNuxtConfig({
   modules: ["@pinia/nuxt", "@nuxtjs/robots"],
   runtimeConfig: {
@@ -13,4 +17,21 @@ export default defineNuxtConfig({
     },
   },
   css: ["~/styles/global.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
+
+  hooks: {
+    "pages:extend"(pages) {
+      pages.push(
+        {
+          name: "drink",
+          path: "/drink/:id",
+          file: resolve(__dirname, "pages/-drink.vue"),
+        },
+        {
+          name: "search-page",
+          path: "/lookup/",
+          file: resolve(__dirname, "pages/category/_categoryName.vue"),
+        }
+      );
+    },
+  },
 });

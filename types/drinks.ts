@@ -57,7 +57,7 @@ type drinksListType = {
 };
 
 type drinksRes = {
-  drinksList: drinksListType;
+  drinksList: drinksListType | null;
 };
 
 interface drinksState {
