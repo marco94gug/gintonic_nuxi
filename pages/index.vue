@@ -2,4 +2,8 @@
   <h1>HOME PAGE</h1>
 </template>
 
-<script setup></script>
+<script setup>
+definePageMeta({
+  middleware: ["home-dispatch"],
+});
+</script>
