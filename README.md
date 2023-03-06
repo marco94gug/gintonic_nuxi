@@ -21,3 +21,5 @@ Try some ways to make the best migration from Nuxt2 to Nuxt3
 8. Preferred use `useFetch` insead the custom one created before like `composables` cause this give me some errors when calls passing from SSR to Client **_to be investigate_** maybe the problems are relates to `.env` and `useRuntimeConfig()`
 
 9. It could be nice to use `useFetch` for better Typescript app.
+
+10. Created middleware for fetch api call SSR, and using `from` param of Route Middleware function to get `id` from the url params
