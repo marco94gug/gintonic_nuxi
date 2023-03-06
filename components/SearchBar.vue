@@ -33,7 +33,7 @@ import { useCategoryStore } from "~~/stores/category";
 import { useNavBarStore } from "~~/stores/navbar";
 import { useSearchStore } from "../stores/search";
 
-const inputValue = ref("");
+const inputValue = ref<string>("");
 const navbarStore = useNavBarStore();
 const searchStore = useSearchStore();
 const categoryStore = useCategoryStore();
@@ -41,13 +41,11 @@ const router = useRouter();
 
 //Functions
 const handleOnSearchInput = (input: string): void => {
-  console.log(input);
   if (input.length > 1) {
     searchStore.loadSearchResults(input);
   } else {
     searchStore.clearSearchResults();
   }
-  console.log(searchStore.getDrinksListResult?.drinks);
 };
 
 const closeAllMenu = () => {
@@ -58,7 +56,7 @@ const closeAllMenu = () => {
 const handleSubmitEvent = (e: Event) => {
   e.preventDefault();
   categoryStore.clearCategoryStore();
-  // this.$store.commit("category/CLEAR_CATEGORY_FILTERED")
+
   router.push({
     name: "search-page",
     query: { text: inputValue.value },

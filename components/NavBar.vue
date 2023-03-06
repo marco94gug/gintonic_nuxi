@@ -43,10 +43,12 @@ import { DrinksType } from "../types/category";
 
 import { useNavBarStore } from "../stores/navbar";
 import { useCategoryStore } from "~~/stores/category";
+import { useSearchStore } from "~~/stores/search";
 
 const router = useRouter();
 const navbarStore = useNavBarStore();
 const categoryStore = useCategoryStore();
+const searchStore = useSearchStore();
 
 //Functions:
 function setActiveMenu(): void {
@@ -58,13 +60,14 @@ function setActiveMenu(): void {
     document.body.style.overflow = "auto";
   }
 
-  // if (categoryStore.getCategoryList.drinks) {
+  // if (categoryStore.getCategoryList?.drinks) {
   //   navbarStore.setCategoryListClose();
   // }
 }
 
 function handleCategoriesClick(): void {
   navbarStore.setCategoryListToggle();
+  searchStore.clearSearchResults();
 }
 
 function handleHomeClick(): void {
@@ -94,6 +97,7 @@ function handleMenuLIElementClick(e: MouseEvent): void {
 function closeAllOpenedMenus(): void {
   navbarStore.setCategoryListClose();
   navbarStore.setHamMenuClose();
+  searchStore.clearSearchResults();
 
   document.body.style.overflow = "auto";
 }
