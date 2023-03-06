@@ -61,9 +61,9 @@ type drinksRes = {
 };
 
 interface drinksState {
-  drink: drinkType;
-  topDrinks: drinksRes;
-  mostLatestDrinks: drinksRes;
+  drink: drinkType | null;
+  topDrinks: drinksRes | null;
+  mostLatestDrinks: drinksRes | null;
 }
 
 export { drinkType, drinksListType, drinksRes, drinksState };
