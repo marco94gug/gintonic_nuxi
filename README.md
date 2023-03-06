@@ -22,4 +22,6 @@ Try some ways to make the best migration from Nuxt2 to Nuxt3
 
 9. It could be nice to use `useFetch` for better Typescript app.
 
-10. Created middleware for fetch api call SSR, and using `from` param of Route Middleware function to get `id` from the url params
+10. Created middleware for fetch api call SSR, and using `from` param of Route Middleware function to get `id` from the url params.
+
+11. Define Emits on `Breadcrumbs` Component, look like more readable than before emits, that one give more 'info'
