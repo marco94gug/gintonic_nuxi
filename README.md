@@ -15,4 +15,9 @@ Try some ways to make the best migration from Nuxt2 to Nuxt3
 6. Created pages and resolved the bug relates 'pages not found - robots.txt', fixed installing robots nuxt module
 
 7. Fixed the bug on middleware where when you changed the route you lost the data from Pinia store,
+
    - _*the problem was related to custom useFetch maybe it wasn't able to read config.public from runtime `to be further explored`*_
+
+8. Preferred use `useFetch` insead the custom one created before like `composables` cause this give me some errors when calls passing from SSR to Client **_to be investigate_** maybe the problems are relates to `.env` and `useRuntimeConfig()`
+
+9. It could be nice to use `useFetch` for better Typescript app.
