@@ -16,7 +16,9 @@
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits(["OnClickLink"]);
+const emit = defineEmits<{
+  (event: "OnClickLink", link: string): void;
+}>();
 
 defineProps<{
   links: string[];
