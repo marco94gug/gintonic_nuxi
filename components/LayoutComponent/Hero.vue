@@ -2,8 +2,8 @@
   <section class="hero" v-if="$route.name === 'drink'">
     <div>
       <div class="img-container" style="width: 100vw">
-        <h2 class="drink_title">{{ drinkInfo.strDrink }}</h2>
-        <img class="hero-img-static" :src="drinkInfo.strDrinkThumb" />
+        <h2 class="drink_title">{{ drinkInfo?.strDrink }}</h2>
+        <img class="hero-img-static" :src="drinkInfo?.strDrinkThumb" />
       </div>
     </div>
   </section>
@@ -18,18 +18,20 @@
     <div>
       <div class="button_container">
         <button @click="prevPic">
-          <font-awesome-icon
+          <div v-if="scrollValue > 0" class="left">{{ "<" }}</div>
+          <!-- <font-awesome-icon
             v-if="scrollValue > 0"
             class="left"
-            icon="fa-solid fa-chevron-up"
-          />
+            :icon="['fa-solid', 'chevron-up']"
+          /> -->
         </button>
         <button @click="nextPic">
-          <font-awesome-icon
+          <div v-if="scrollValue < maxValue()" class="right">{{ ">" }}</div>
+          <!-- <font-awesome-icon
             v-if="scrollValue < maxValue()"
             class="right"
-            icon="fa-solid fa-chevron-up"
-          />
+            :icon="['fa-solid', 'chevron-up']"
+          /> -->
         </button>
       </div>
       <div class="img-container" v-for="drink in topDrinks">
@@ -53,7 +55,7 @@ const scrollValue = ref<number>(100);
 
 const props = defineProps<{
   topDrinks: drinkType[];
-  drinkInfo: drinkType;
+  drinkInfo?: drinkType;
 }>();
 
 const maxValue = (): number => {
@@ -132,14 +134,16 @@ const prevPic = (): void => {
           background-color: rgba(0, 0, 0, 0.201);
         }
         .right {
-          transform: rotate(90deg);
+          //   transform: rotate(90deg);
           padding: 0 8px;
+          height: max-content;
         }
       }
 
       .left {
-        transform: rotate(-90deg);
+        // transform: rotate(-90deg);
         padding: 0 8px;
+        height: max-content;
       }
     }
 
