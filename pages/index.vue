@@ -13,7 +13,7 @@ import Hero from "~~/components/LayoutComponent/Hero.vue";
 import { useDrinksStore } from "~~/stores/drinks";
 
 const drinkStore = useDrinksStore();
-const topDrinks = drinkStore.getTopDrinks;
+const topDrinks = drinkStore.getTopDrinks as any;
 const mostLatestDrinks = drinkStore.getMostLatestDrinks;
 
 definePageMeta({

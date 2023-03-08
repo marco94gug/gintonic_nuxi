@@ -27,7 +27,7 @@ export const useDrinksStore = defineStore("drinks", {
       });
 
       const topDrinksRes = res.data.value;
-      this.topDrinks = topDrinksRes;
+      this.topDrinks = topDrinksRes as drinksRes;
     },
 
     async loadDrink(id: string) {
