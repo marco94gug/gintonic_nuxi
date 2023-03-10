@@ -52,12 +52,7 @@ export const useCategoryStore = defineStore("category", {
     async loadCategoryFilter(category: string) {
       try {
         const res = await useFetch<FilteredDrinkByCategory>("filter.php", {
-          baseURL: useRuntimeConfig().public.apiBase,
-          headers: {
-            "Content-Type": "application/json",
-            "X-RapidAPI-Key": useRuntimeConfig().public.apiSecret,
-            "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
-          },
+          baseURL: useRuntimeConfig().public.apiFreeBase,
           params: {
             c: category,
           },

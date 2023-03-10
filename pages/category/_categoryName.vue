@@ -50,11 +50,15 @@ const clickCard = (id: string): void => {
 
 const changeTitle = (): void => {
   if (route.query.category) {
-    title.value = (route.query.category as string)
-      .replace("-", "/")
-      .replaceAll("_", " ");
+    isListResulted(
+      categoryStore.filteredByCategory?.drinks === undefined,
+      route.query.category as string
+    );
   } else {
-    title.value = `You searched for ${route.query.text as string}`;
+    isListResulted(
+      categoryStore.drinksResults?.drinks === undefined,
+      route.query.text as string
+    );
   }
 };
 onMounted(() => {
@@ -65,6 +69,14 @@ onUpdated(() => {
   // Formatting the title from url path for API call on refresh
   changeTitle();
 });
+
+const isListResulted = (condition: boolean, titleValue: string): void => {
+  if (condition) {
+    title.value = "Error";
+  } else {
+    title.value = titleValue.replace("-", "/").replaceAll("_", " ");
+  }
+};
 </script>
 
 <style lang="scss" scoped>

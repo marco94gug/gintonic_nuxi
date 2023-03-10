@@ -35,3 +35,5 @@ Try some ways to make the best migration from Nuxt2 to Nuxt3
         const dataStore = nameStore.data
       ```
 14. Created `Card` component
+
+15. To consider: Apply a loading state for search-page
