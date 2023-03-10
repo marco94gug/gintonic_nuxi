@@ -27,3 +27,11 @@ Try some ways to make the best migration from Nuxt2 to Nuxt3
 11. Define Emits on `Breadcrumbs` Component, look like more readable than before emits, that one give more 'info'
 
 12. Created an HTML `ref` on `Carousel` Component, it's not too different from old version, only the typing changes, see the references [Refs Typescript](https://vuejs.org/guide/typescript/composition-api.html#typing-template-refs)
+
+13. Implemented the search-page on `_categoryName.vue` i think it was the hardest migration step, should analyze the code for make it better,
+    for have a reactive page with store data, never assign it on a variable, like:
+    - ```
+        const nameStore = useNamestore();
+        const dataStore = nameStore.data
+      ```
+14. Created `Card` component

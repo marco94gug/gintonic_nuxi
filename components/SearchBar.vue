@@ -29,14 +29,12 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import { useCategoryStore } from "~~/stores/category";
 import { useNavBarStore } from "~~/stores/navbar";
 import { useSearchStore } from "../stores/search";
 
 const inputValue = ref<string>("");
 const navbarStore = useNavBarStore();
 const searchStore = useSearchStore();
-const categoryStore = useCategoryStore();
 const router = useRouter();
 
 //Functions
@@ -55,7 +53,6 @@ const closeAllMenu = () => {
 
 const handleSubmitEvent = (e: Event) => {
   e.preventDefault();
-  categoryStore.clearCategoryStore();
 
   router.push({
     name: "search-page",

@@ -30,7 +30,6 @@ const useSearchStore = defineStore("search", {
         });
         const resultsDrinks = res.data.value;
         this.drinksList = resultsDrinks;
-        console.log(this.drinksList);
       } catch (error) {
         console.error(error);
       }

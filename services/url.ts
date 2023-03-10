@@ -1,5 +1,5 @@
-export const buildUrlPath = (categoryString: string): string => {
-  const urlFormatted = categoryString
+export const buildUrlPath = (stringToBeFormatted: string): string => {
+  const urlFormatted = stringToBeFormatted
     .toLocaleLowerCase()
     .replaceAll(" ", "_")
     .replaceAll("/", "-")

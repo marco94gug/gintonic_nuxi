@@ -1,3 +1,199 @@
 <template>
-  <h2>Category name page</h2>
+  <section>
+    <Breadcrumbs :links="[route.query.text ? 'search' : title]" />
+    <div class="category_main_content">
+      <h2>{{ title }}</h2>
+      <div
+        class="grid-drink"
+        v-if="
+          (categoryStore.filteredByCategory as drinksListType)?.drinks?.length > 0 ||
+          categoryStore.drinksResults.drinks?.length > 0
+        "
+      >
+        <Card
+          v-for="drink in (categoryStore.filteredByCategory as drinksListType)?.drinks ?? categoryStore.drinksResults?.drinks"
+          :drinkInfo="drink"
+          @clicked="clickCard"
+        >
+          <template v-slot:see-more>
+            <p>see more</p>
+          </template>
+        </Card>
+      </div>
+      <div class="no-results" v-else>
+        <h3>Something went wrong :(</h3>
+        <img src="../../assets/img/404.png" />
+      </div>
+    </div>
+  </section>
 </template>
+
+<script lang="ts" setup>
+import { ref } from "vue";
+import { useCategoryStore } from "~~/stores/category";
+import { drinksListType } from "~~/types/drinks";
+
+const route = useRoute();
+const router = useRouter();
+const categoryStore = useCategoryStore();
+
+const title = ref("");
+
+definePageMeta({
+  middleware: ["category-dispatch"],
+});
+
+//Methods
+const clickCard = (id: string): void => {
+  router.push(`/drink/${id}`);
+};
+
+const changeTitle = (): void => {
+  if (route.query.category) {
+    title.value = (route.query.category as string)
+      .replace("-", "/")
+      .replaceAll("_", " ");
+  } else {
+    title.value = `You searched for ${route.query.text as string}`;
+  }
+};
+onMounted(() => {
+  changeTitle();
+});
+
+onUpdated(() => {
+  // Formatting the title from url path for API call on refresh
+  changeTitle();
+});
+</script>
+
+<style lang="scss" scoped>
+@import "../../styles/utils";
+
+section {
+  margin-top: 54px;
+
+  .category_main_content {
+    padding: 0 20px 20px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+
+    h2 {
+      color: $mainFont;
+      text-transform: capitalize;
+      font-size: 1.4rem;
+    }
+
+    .grid-drink {
+      display: grid;
+      width: max-content;
+      align-content: center;
+      gap: 20px;
+
+      div {
+        @include start-from("phone") {
+          display: flex;
+          width: 80%;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    .no-results {
+      position: absolute;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+      height: 100vh;
+      pointer-events: none;
+      opacity: 0.8;
+
+      img {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@include start-from("phone") {
+  section {
+    .category_main_content {
+      .grid-drink {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@include start-from("tablet") {
+  section {
+    .category_main_content {
+      margin-top: 10px;
+      gap: 30px;
+
+      h2 {
+        font-size: 1.5rem;
+      }
+      .grid-drink {
+        grid-template-columns: repeat(2, 300px);
+      }
+    }
+  }
+}
+
+@include start-from("desktop") {
+  section {
+    .category_main_content {
+      margin-top: 15px;
+      gap: 35px;
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      .grid-drink {
+        grid-template-columns: repeat(3, 300px);
+      }
+    }
+  }
+}
+
+@include start-from("desktop-large") {
+  section {
+    .category_main_content {
+      margin-top: 0;
+      gap: 56px;
+
+      h2 {
+        font-size: 1.7rem;
+      }
+
+      .grid-drink {
+        grid-template-columns: repeat(4, 300px);
+      }
+    }
+  }
+}
+
+@include start-from("desktop-extralarge") {
+  section {
+    .category_main_content {
+      margin-top: 0px;
+      gap: 56px;
+
+      h2 {
+        font-size: 1.7rem;
+      }
+
+      .grid-drink {
+        grid-template-columns: repeat(5, 300px);
+      }
+    }
+  }
+}
+</style>

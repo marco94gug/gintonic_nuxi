@@ -5,6 +5,7 @@ import {
   CategoryResponse,
   FilteredDrinkByCategory,
 } from "~~/types/category";
+import { drinksListType } from "~~/types/drinks";
 
 export const useCategoryStore = defineStore("category", {
   state: () =>
@@ -25,7 +26,12 @@ export const useCategoryStore = defineStore("category", {
     clearCategoryStore() {
       this.$reset();
     },
-
+    clearCategoryResults() {
+      this.filteredByCategory = {} as drinksListType;
+    },
+    clearDrinksResults() {
+      this.drinksResults = {} as drinksListType;
+    },
     //Actions
     async load() {
       try {
@@ -56,7 +62,7 @@ export const useCategoryStore = defineStore("category", {
             c: category,
           },
         });
-
+        this.clearDrinksResults();
         const drinkListFilteredByCategory = res.data.value;
         this.filteredByCategory = drinkListFilteredByCategory;
       } catch (error) {
@@ -66,14 +72,21 @@ export const useCategoryStore = defineStore("category", {
 
     async loadSearchResultedForPage(query: string) {
       try {
-        const res = await useRapidFetch("search.php", {
+        const res = await useFetch<drinksListType>("search.php", {
+          baseURL: useRuntimeConfig().public.apiBase,
+          headers: {
+            "Content-Type": "application/json",
+            "X-RapidAPI-Key": useRuntimeConfig().public.apiSecret,
+            "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
+          },
           params: {
             s: query,
           },
         });
+        this.clearCategoryResults();
 
         const results = res.data.value;
-        this.drinksResults = results;
+        this.drinksResults = results as drinksListType;
       } catch (error) {
         console.error(error);
       }

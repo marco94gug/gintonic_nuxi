@@ -3,7 +3,7 @@
     <h2 class="carousel-title">{{ title }}</h2>
     <div class="carousel-container">
       <div class="carousel" ref="cardScroller">
-        <DrinkCard
+        <Card
           v-for="drink in dataListLength(8)"
           :drinkInfo="drink"
           @clicked="clickCard"
@@ -47,8 +47,6 @@ onMounted(() => {
   cardScroller.value?.addEventListener("scroll", (e) => {
     updateScrollValue(e);
   });
-
-  console.log(props);
 });
 
 onBeforeRouteLeave(() => {
