@@ -25,3 +25,5 @@ Try some ways to make the best migration from Nuxt2 to Nuxt3
 10. Created middleware for fetch api call SSR, and using `from` param of Route Middleware function to get `id` from the url params.
 
 11. Define Emits on `Breadcrumbs` Component, look like more readable than before emits, that one give more 'info'
+
+12. Created an HTML `ref` on `Carousel` Component, it's not too different from old version, only the typing changes, see the references [Refs Typescript](https://vuejs.org/guide/typescript/composition-api.html#typing-template-refs)
