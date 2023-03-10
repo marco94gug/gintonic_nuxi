@@ -59,10 +59,6 @@ function setActiveMenu(): void {
   } else {
     document.body.style.overflow = "auto";
   }
-
-  // if (categoryStore.getCategoryList?.drinks) {
-  //   navbarStore.setCategoryListClose();
-  // }
 }
 
 function handleCategoriesClick(): void {

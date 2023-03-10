@@ -6,20 +6,11 @@
   </div>
 </template>
 
-//TO-DO: convert on script setup typescript
-<script>
-export default {
-  props: {
-    setActiveMenu: {
-      require: true,
-      type: Function,
-    },
-    isMenuActive: {
-      require: true,
-      type: Boolean,
-    },
-  },
-};
+<script lang="ts" setup>
+defineProps<{
+  setActiveMenu: () => void;
+  isMenuActive: boolean;
+}>();
 </script>
 
 <style lang="scss" scoped>

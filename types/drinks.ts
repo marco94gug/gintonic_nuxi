@@ -57,13 +57,13 @@ type drinksListType = {
 };
 
 type drinksRes = {
-  drinksList: drinksListType | null;
+  drinks: drinksListType;
 };
 
 interface drinksState {
-  drink: drinkType;
+  drink: drinkType | null;
   topDrinks: drinksRes;
-  mostLatestDrinks: drinksRes;
+  mostLatestDrinks: drinksRes | null;
 }
 
 export { drinkType, drinksListType, drinksRes, drinksState };
