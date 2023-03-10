@@ -18,20 +18,14 @@
     <div>
       <div class="button_container">
         <button @click="prevPic">
-          <div v-if="scrollValue > 0" class="left">{{ "<" }}</div>
-          <!-- <font-awesome-icon
-            v-if="scrollValue > 0"
-            class="left"
-            :icon="['fa-solid', 'chevron-up']"
-          /> -->
+          <div v-if="scrollValue > 0" class="left">
+            <i class="pi pi-angle-left"></i>
+          </div>
         </button>
         <button @click="nextPic">
-          <div v-if="scrollValue < maxValue()" class="right">{{ ">" }}</div>
-          <!-- <font-awesome-icon
-            v-if="scrollValue < maxValue()"
-            class="right"
-            :icon="['fa-solid', 'chevron-up']"
-          /> -->
+          <div v-if="scrollValue < maxValue()" class="right">
+            <i class="pi pi-angle-right"></i>
+          </div>
         </button>
       </div>
       <div class="img-container" v-for="drink in topDrinks">
@@ -49,6 +43,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
+import "primeicons/primeicons.css";
 import { drinkType } from "~~/types/drinks";
 
 const scrollValue = ref<number>(100);
