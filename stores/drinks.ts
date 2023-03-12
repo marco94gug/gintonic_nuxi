@@ -36,7 +36,6 @@ export const useDrinksStore = defineStore("drinks", {
     },
 
     async loadDrink(id: string) {
-      console.log("sto facendo la chiamata");
       const res = await useFetch<drinksListType>("lookup.php", {
         baseURL: useRuntimeConfig().public.apiFreeBase,
         params: {

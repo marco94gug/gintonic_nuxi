@@ -23,9 +23,6 @@ definePageMeta({
   middleware: ["drink-dispatch"],
 });
 
-onMounted(() => {
-  console.log(drink);
-});
 //Methods
 const categoryClick = (link: string) => {
   router.push({
