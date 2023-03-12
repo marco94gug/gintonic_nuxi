@@ -1,5 +1,10 @@
 import { defineStore } from "pinia";
-import { drinksState, drinksRes, drinkType } from "~~/types/drinks";
+import {
+  drinksState,
+  drinksRes,
+  drinkType,
+  drinksListType,
+} from "~~/types/drinks";
 
 export const useDrinksStore = defineStore("drinks", {
   state: (): drinksState =>
@@ -31,15 +36,15 @@ export const useDrinksStore = defineStore("drinks", {
     },
 
     async loadDrink(id: string) {
-      const res = await useFetch<drinkType>("lookup.php", {
+      console.log("sto facendo la chiamata");
+      const res = await useFetch<drinksListType>("lookup.php", {
         baseURL: useRuntimeConfig().public.apiFreeBase,
         params: {
           i: id,
         },
       });
-
-      const drinkRes = res.data.value;
-      this.drink = drinkRes;
+      const drinkRes = res.data.value?.drinks[0];
+      this.drink = drinkRes as drinkType;
     },
 
     async loadMostLatestDrinks() {

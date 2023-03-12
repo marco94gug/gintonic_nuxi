@@ -9,10 +9,14 @@
   </section>
   <section class="hero" v-else>
     <div class="title">
-      <h2>{{ topDrinks[scrollValue / 100].strDrink }}</h2>
+      <h2>{{ (topDrinks as drinkType[])[scrollValue / 100].strDrink }}</h2>
       <div class="categories">
-        <span>{{ topDrinks[scrollValue / 100].strCategory }}</span>
-        <span>{{ topDrinks[scrollValue / 100].strAlcoholic }}</span>
+        <span>{{
+          (topDrinks as drinkType[])[scrollValue / 100].strCategory
+        }}</span>
+        <span>{{
+          (topDrinks as drinkType[])[scrollValue / 100].strAlcoholic
+        }}</span>
       </div>
     </div>
     <div>
@@ -49,12 +53,15 @@ import { drinkType } from "~~/types/drinks";
 const scrollValue = ref<number>(100);
 
 const props = defineProps<{
-  topDrinks: drinkType[];
+  topDrinks?: drinkType[];
   drinkInfo?: drinkType;
 }>();
 
 const maxValue = (): number => {
-  return (props.topDrinks?.length - 1) * 100;
+  if (props.topDrinks) {
+    return (props.topDrinks?.length - 1) * 100;
+  }
+  return 0;
 };
 
 const nextPic = (): void => {
