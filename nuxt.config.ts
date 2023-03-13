@@ -29,7 +29,7 @@ export default defineNuxtConfig({
         {
           name: "search-page",
           path: "/lookup/",
-          file: resolve(__dirname, "pages/category/_categoryName.vue"),
+          file: resolve(__dirname, "pages/_searchPage/index.vue"),
         }
       );
     },
