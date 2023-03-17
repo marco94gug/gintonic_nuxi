@@ -56,7 +56,8 @@ watch(route, (route) => {
 
 onMounted(() => {
   const titleNotFormatted =
-    (route.query.category as string) ?? (route.query.text as string);
+    (route.query.category as string) ??
+    `You serched for: ${route.query.text as string}`;
 
   isListResulted(
     categoryStore.getFilteredByCategory === undefined &&
