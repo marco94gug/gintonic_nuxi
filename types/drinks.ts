@@ -53,7 +53,7 @@ interface drinkType {
 }
 
 type drinksListType = {
-  drinks: Array<drinkType>;
+  drinks: drinkType[];
 };
 
 type drinksRes = {
@@ -61,9 +61,12 @@ type drinksRes = {
 };
 
 interface drinksState {
-  drink: drinkType | null;
+  drink: drinkType | undefined;
   topDrinks: drinksRes;
   mostLatestDrinks: drinksRes | null;
+  lodaingDrink: boolean;
+  loadingTopDrinks: boolean;
+  loadingLatestDrinks: boolean;
 }
 
 export { drinkType, drinksListType, drinksRes, drinksState };

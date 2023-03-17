@@ -21,7 +21,7 @@ interface FilteredDrinkByCategory {
 type CategoryListType = {
   categoryList: CategoryResponse | null;
   filteredByCategory: FilteredDrinkByCategory | null;
-  drinksResults: drinksListType;
+  drinksResults: drinksListType | null;
 };
 
 export {

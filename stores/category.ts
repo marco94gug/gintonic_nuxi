@@ -17,8 +17,8 @@ export const useCategoryStore = defineStore("category", {
 
   getters: {
     getCategoryList: (state) => state.categoryList,
-    getFilteredByCategory: (state) => state.filteredByCategory,
-    getDrinksResults: (state) => state.drinksResults,
+    getFilteredByCategory: (state) => state.filteredByCategory?.drinks,
+    getDrinksResults: (state) => state.drinksResults?.drinks,
   },
 
   actions: {
@@ -68,12 +68,7 @@ export const useCategoryStore = defineStore("category", {
     async loadSearchResultedForPage(query: string) {
       try {
         const res = await useFetch<drinksListType>("search.php", {
-          baseURL: useRuntimeConfig().public.apiBase,
-          headers: {
-            "Content-Type": "application/json",
-            "X-RapidAPI-Key": useRuntimeConfig().public.apiSecret,
-            "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
-          },
+          baseURL: useRuntimeConfig().public.apiFreeBase,
           params: {
             s: query,
           },
@@ -81,7 +76,7 @@ export const useCategoryStore = defineStore("category", {
         this.clearCategoryResults();
 
         const results = res.data.value;
-        this.drinksResults = results as drinksListType;
+        this.drinksResults = results;
       } catch (error) {
         console.error(error);
       }

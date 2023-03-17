@@ -8,14 +8,14 @@
     </div>
   </section>
   <section class="hero" v-else>
-    <div class="title">
-      <h2>{{ (topDrinks as drinkType[])[scrollValue / 100].strDrink }}</h2>
+    <div class="title" v-if="topDrinks">
+      <h2>{{ (topDrinks as drinkType[])[scrollValue / 100]?.strDrink }}</h2>
       <div class="categories">
         <span>{{
-          (topDrinks as drinkType[])[scrollValue / 100].strCategory
+          (topDrinks as drinkType[])[scrollValue / 100]?.strCategory
         }}</span>
         <span>{{
-          (topDrinks as drinkType[])[scrollValue / 100].strAlcoholic
+          (topDrinks as drinkType[])[scrollValue / 100]?.strAlcoholic
         }}</span>
       </div>
     </div>

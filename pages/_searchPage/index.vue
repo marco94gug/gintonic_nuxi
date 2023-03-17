@@ -6,13 +6,13 @@
       <div
         class="grid-drink"
         v-if="
-          (categoryStore.filteredByCategory as drinksListType)?.drinks?.length > 0 ||
-          categoryStore.drinksResults.drinks?.length > 0
+          categoryStore.getFilteredByCategory || categoryStore.getDrinksResults
         "
       >
         <Card
-          v-for="drink in (categoryStore.filteredByCategory as drinksListType)?.drinks ?? categoryStore.drinksResults?.drinks"
-          :drinkInfo="drink"
+          v-for="drink in categoryStore.getFilteredByCategory ??
+          categoryStore.getDrinksResults"
+          :drinkInfo="drink as drinkType"
           @clicked="clickCard"
         >
           <template v-slot:see-more>
@@ -31,7 +31,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useCategoryStore } from "~~/stores/category";
-import { drinksListType } from "~~/types/drinks";
+import { drinkType } from "~~/types/drinks";
 
 const route = useRoute();
 const router = useRouter();
@@ -43,39 +43,40 @@ definePageMeta({
   middleware: ["category-dispatch"],
 });
 
+watch(route, (route) => {
+  const titleNotFormatted =
+    (route.query.category as string) ?? (route.query.text as string);
+
+  isListResulted(
+    categoryStore.getFilteredByCategory === undefined &&
+      categoryStore.getDrinksResults === undefined,
+    titleNotFormatted
+  );
+});
+
+onMounted(() => {
+  const titleNotFormatted =
+    (route.query.category as string) ?? (route.query.text as string);
+
+  isListResulted(
+    categoryStore.getFilteredByCategory === undefined &&
+      categoryStore.getDrinksResults === undefined,
+    titleNotFormatted
+  );
+});
+
 //Methods
 const clickCard = (id: string): void => {
   router.push(`/drink/${id}`);
 };
 
-const changeTitle = (): void => {
-  if (route.query.category) {
-    isListResulted(
-      categoryStore.filteredByCategory?.drinks === undefined,
-      route.query.category as string
-    );
-  } else {
-    isListResulted(
-      categoryStore.drinksResults?.drinks === undefined,
-      route.query.text as string
-    );
-  }
-};
-onMounted(() => {
-  changeTitle();
-});
-
-onUpdated(() => {
-  // Formatting the title from url path for API call on refresh
-  changeTitle();
-});
-
-const isListResulted = (condition: boolean, titleValue: string): void => {
-  if (condition) {
-    title.value = "Error";
-  } else {
-    title.value = titleValue.replace("-", "/").replaceAll("_", " ");
-  }
+const isListResulted = (
+  condition: boolean,
+  titleToBeFormatted: string
+): void => {
+  condition
+    ? (title.value = "Error")
+    : (title.value = titleToBeFormatted.replace("-", "/").replaceAll("_", " "));
 };
 </script>
 

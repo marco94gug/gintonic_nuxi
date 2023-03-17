@@ -6,22 +6,48 @@ import {
   drinksListType,
 } from "~~/types/drinks";
 
+type loadCases = "drink" | "topDrinks" | "latestDrinks";
+
 export const useDrinksStore = defineStore("drinks", {
   state: (): drinksState =>
     ({
       drink: {},
       topDrinks: {},
       mostLatestDrinks: {},
+      lodaingDrink: true,
+      loadingTopDrinks: true,
+      loadingLatestDrinks: true,
     } as drinksState),
 
   getters: {
     getDrink: (state) => state.drink,
     getTopDrinks: (state) => state.topDrinks,
     getMostLatestDrinks: (state) => state.mostLatestDrinks,
+    isTopDrinkLoading: (state) => state.loadingTopDrinks,
+    isDrinkLoading: (state) => state.lodaingDrink,
+    isLatestLoading: (state) => state.loadingLatestDrinks,
   },
 
   actions: {
+    stillLoading(loadCase: loadCases, condition: boolean): void {
+      switch (loadCase) {
+        case "drink":
+          this.lodaingDrink = condition;
+          break;
+        case "topDrinks":
+          this.loadingTopDrinks = condition;
+          break;
+        case "latestDrinks":
+          this.loadingLatestDrinks = condition;
+          break;
+
+        default:
+          break;
+      }
+    },
+
     async loadTopDrinks() {
+      this.stillLoading("topDrinks", true);
       const res = await useFetch<drinksRes>("popular.php", {
         baseURL: useRuntimeConfig().public.apiBase,
         headers: {
@@ -33,17 +59,24 @@ export const useDrinksStore = defineStore("drinks", {
 
       const topDrinksRes = res.data.value;
       this.topDrinks = topDrinksRes as drinksRes;
+      this.stillLoading("topDrinks", false);
     },
 
     async loadDrink(id: string) {
-      const res = await useFetch<drinksListType>("lookup.php", {
-        baseURL: useRuntimeConfig().public.apiFreeBase,
-        params: {
-          i: id,
-        },
-      });
-      const drinkRes = res.data.value?.drinks[0];
-      this.drink = drinkRes as drinkType;
+      try {
+        const res = await useFetch<drinksListType>("lookup.php", {
+          baseURL: useRuntimeConfig().public.apiFreeBase,
+          params: {
+            i: id,
+          },
+        });
+        this.drink = undefined;
+        const drinkRes = res.data.value?.drinks[0];
+        this.drink = drinkRes;
+      } catch (error) {
+        console.log(error);
+        throw error;
+      }
     },
 
     async loadMostLatestDrinks() {

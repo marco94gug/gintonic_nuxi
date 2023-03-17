@@ -3,6 +3,10 @@ import { useDrinksStore } from "~~/stores/drinks";
 export default defineNuxtRouteMiddleware(async (to) => {
   const drinkStore = useDrinksStore();
   const id = to.params.id as string;
-  console.log("sono dentro al dispatch");
+
+  drinkStore.stillLoading("drink", true);
   await drinkStore.loadDrink(id);
+
+  // drinkStore.stillLoading("drink", false);
+  console.log(drinkStore.lodaingDrink);
 });

@@ -29,6 +29,7 @@ const useSearchStore = defineStore("search", {
           },
         });
         const resultsDrinks = res.data.value;
+
         this.drinksList = resultsDrinks;
       } catch (error) {
         console.error(error);
