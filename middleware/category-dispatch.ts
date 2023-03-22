@@ -11,6 +11,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
       await categoryStore.loadSearchResultedForPage(searchValue);
     }
   } catch (error) {
+    console.log("test");
     console.error(error);
   }
 });
