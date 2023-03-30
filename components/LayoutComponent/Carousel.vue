@@ -39,7 +39,7 @@ const scrollWidth = ref(0);
 const router = useRouter();
 
 const props = defineProps<{
-  dataList: drinkType[];
+  dataList?: drinkType[];
   title: string;
 }>();
 
@@ -76,7 +76,7 @@ const isMinScrollValue = (): boolean => {
 
 //Methods
 const dataListLength = (n: number): drinkType[] => {
-  return props.dataList.filter((_, i: number) => i < n);
+  return (props.dataList as drinkType[])?.filter((_, i: number) => i < n);
 };
 
 const scrollTo = (direction: string): void => {

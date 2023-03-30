@@ -109,8 +109,7 @@ section {
       div {
         @include start-from("phone") {
           display: flex;
-          width: 80%;
-          margin: 0 auto;
+          width: 100%;
         }
       }
     }

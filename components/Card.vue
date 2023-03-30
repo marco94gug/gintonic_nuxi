@@ -1,6 +1,10 @@
 <template>
   <div class="drink_card" @click="onClick(drinkInfo.idDrink)">
-    <img :src="drinkInfo.strDrinkThumb" :alt="drinkInfo.strDrink" />
+    <img
+      :class="`img ${isCategoryFilteredDrink() ? 'category' : ''}`"
+      :src="drinkInfo.strDrinkThumb"
+      :alt="drinkInfo.strDrink"
+    />
     <div :class="`drink_info ${isCategoryFilteredDrink() ? 'category' : ''}`">
       <h3>{{ drinkInfo.strDrink }}</h3>
 
@@ -48,6 +52,14 @@ const onClick = (id: string): void => {
     height: 200px;
   }
 
+  .img {
+    &.category {
+      @include start-from("phone") {
+        width: 150px;
+        object-fit: cover;
+      }
+    }
+  }
   .drink_info {
     display: flex;
     justify-content: center;
