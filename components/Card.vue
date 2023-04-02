@@ -47,6 +47,7 @@ const onClick = (id: string): void => {
   width: 200px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.232);
   cursor: pointer;
+  justify-self: center;
 
   img {
     height: 200px;
@@ -56,6 +57,7 @@ const onClick = (id: string): void => {
     &.category {
       @include start-from("phone") {
         width: 150px;
+        height: 150px;
         object-fit: cover;
       }
     }
@@ -92,20 +94,27 @@ const onClick = (id: string): void => {
   }
 }
 
-@media only screen and (min-width: 768px) {
+@include start-from(generic-desktop) {
   .drink_card {
-    width: 300px;
-
-    &:hover  {
-      border: 2px solid red;
-    }
+    width: 260px;
+    height: 260px;
 
     img {
-      height: 300px;
+      width: 100%;
+      object-fit: cover;
+      height: 80%;
     }
 
     .drink_info {
+      height: 18%;
       font-size: 1rem;
+
+      &.category {
+        height: 18%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 }

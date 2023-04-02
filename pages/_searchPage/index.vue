@@ -16,7 +16,7 @@
           @clicked="clickCard"
         >
           <template v-slot:see-more>
-            <p>see more</p>
+            <p class="card-paragraph">see more</p>
           </template>
         </Card>
       </div>
@@ -153,9 +153,13 @@ section {
         font-size: 1.5rem;
       }
       .grid-drink {
-        grid-template-columns: repeat(2, 300px);
+        grid-template-columns: repeat(2, 260px);
       }
     }
+  }
+
+  .card-paragraph {
+    display: none;
   }
 }
 
@@ -170,9 +174,13 @@ section {
       }
 
       .grid-drink {
-        grid-template-columns: repeat(3, 300px);
+        grid-template-columns: repeat(3, 260px);
       }
     }
+  }
+
+  .card-paragraph {
+    display: none;
   }
 }
 
@@ -187,9 +195,13 @@ section {
       }
 
       .grid-drink {
-        grid-template-columns: repeat(4, 300px);
+        grid-template-columns: repeat(4, 260px);
       }
     }
+  }
+
+  .card-paragraph {
+    display: none;
   }
 }
 
@@ -204,9 +216,13 @@ section {
       }
 
       .grid-drink {
-        grid-template-columns: repeat(5, 300px);
+        grid-template-columns: repeat(5, 260px);
       }
     }
+  }
+
+  .card-paragraph {
+    display: none;
   }
 }
 </style>
