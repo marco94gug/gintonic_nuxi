@@ -68,12 +68,14 @@ const handleDrinkClick = (e: Event): void => {
 };
 
 const clearSearchBar = (): void => {
-  inputValue.value = "";
   searchStore.clearSearchResults();
+  inputValue.value = "";
 };
 
 const isResultsVisible = (): boolean => {
-  return Boolean(searchStore.getDrinksListResult?.drinks);
+  return Boolean(
+    searchStore.getDrinksListResult?.drinks && inputValue.value.length > 1
+  );
 };
 </script>
 
