@@ -5,7 +5,7 @@
       <div v-for="(link, index) in links">
         <span>{{ ">" }}</span>
         <li
-          @click="linkClick(link)"
+          @click="(): void => linkClick(link)"
           :style="`${links.length - 1 === index ? styleLinkVisited() : ''}`"
         >
           {{ link }}

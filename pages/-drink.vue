@@ -3,7 +3,7 @@
     <Hero :drinkInfo="drink" />
     <Breadcrumbs
       :links="[drink?.strCategory as string, drink?.strDrink as string]"
-      @OnClickLink="(l: string): void => categoryClick(l)"
+      @OnClickLink="categoryClick"
     />
     <section class="drink_main-content"></section>
   </main>
@@ -31,8 +31,7 @@ definePageMeta({
 });
 
 //Methods
-const categoryClick = (link: string): void => {
-  console.log(link);
+const categoryClick = (link: string | undefined): void => {
   router.push({
     name: "search-page",
     query: { category: buildUrlPath(link) },

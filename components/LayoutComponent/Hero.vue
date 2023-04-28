@@ -192,20 +192,29 @@ const prevPic = (): void => {
     display: flex;
     flex-direction: column;
     border: 2px solid red;
+    height: max-content;
     margin: auto;
 
-    .img-container {
-      flex-direction: column;
-      width: 100% !important;
-      .hero-img-static {
-        border: 2px solid yellow;
-      }
-      .drink_title {
-        position: relative;
-        color: red;
-        display: block;
-        width: max-content;
-        border: 2px solid blue;
+    div {
+      width: 100%;
+      .img-container {
+        flex-direction: column;
+        flex: 0 0 auto;
+        width: 100% !important;
+        .hero-img-static {
+          border: 2px solid yellow;
+          width: 50%;
+          height: 100%;
+        }
+        .drink_title {
+          position: relative;
+          color: $mainFont;
+          margin-block: 16px;
+          margin-left: 30px;
+          display: block;
+          width: max-content;
+          height: max-content;
+        }
       }
     }
   }
