@@ -23,6 +23,7 @@ definePageMeta({
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/utils";
 .main-section {
   display: flex;
   flex-direction: column;
@@ -37,11 +38,21 @@ definePageMeta({
   .main-section {
     .home {
       padding: 40px 0;
-      max-width: 1440px;
       margin: auto;
+      max-width: 720px;
       display: flex;
       flex-direction: column;
       gap: 50px;
+
+      @include start-from("desktop") {
+        max-width: 980px;
+      }
+      @include start-from("desktop-large") {
+        max-width: 1220px;
+      }
+      @include start-from("desktop-extralarge") {
+        max-width: 1440px;
+      }
     }
   }
 }

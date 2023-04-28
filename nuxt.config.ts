@@ -4,7 +4,7 @@ import { createCommonJS } from "mlly";
 const { __dirname } = createCommonJS(import.meta.url);
 
 export default defineNuxtConfig({
-  modules: ["@pinia/nuxt", "@nuxtjs/robots"],
+  modules: ["@pinia/nuxt"],
   runtimeConfig: {
     apiSecret: process.env.NUXT_API_SECRET,
     // The private keys which are only available server-side
