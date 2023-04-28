@@ -117,7 +117,7 @@ const clickCard = (id: string): void => {
   padding: 10px 0;
   .carousel {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     width: 100%;
     padding-block: 5px;
     overflow-x: scroll;
@@ -180,7 +180,7 @@ const clickCard = (id: string): void => {
       display: flex;
     }
     .carousel {
-      gap: 10px;
+      gap: 16px;
     }
   }
 }

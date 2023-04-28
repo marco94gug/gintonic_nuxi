@@ -1,5 +1,5 @@
 <template>
-  <section class="hero" v-if="$route.name === 'drink'">
+  <section class="hero drink" v-if="$route.name === 'drink'">
     <div>
       <div class="img-container" style="width: 100vw">
         <h2 class="drink_title">{{ drinkInfo?.strDrink }}</h2>
@@ -185,6 +185,29 @@ const prevPic = (): void => {
     font-size: 1.8rem;
     color: $whiteTransparentFont;
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.715);
+  }
+
+  &.drink {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid red;
+    margin: auto;
+
+    .img-container {
+      flex-direction: column;
+      width: 100% !important;
+      .hero-img-static {
+        border: 2px solid yellow;
+      }
+      .drink_title {
+        position: relative;
+        color: red;
+        display: block;
+        width: max-content;
+        border: 2px solid blue;
+      }
+    }
   }
 }
 

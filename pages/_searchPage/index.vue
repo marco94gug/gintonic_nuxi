@@ -12,7 +12,7 @@
         <Card
           v-for="drink in categoryStore.getFilteredByCategory ??
           categoryStore.getDrinksResults"
-          :drinkInfo="drink as drinkType"
+          :drinkInfo="(drink as drinkType)"
           @clicked="clickCard"
         >
           <template v-slot:see-more>

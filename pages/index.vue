@@ -29,13 +29,16 @@ definePageMeta({
 
   .home {
     padding-block: 20px;
+    padding-inline: 15px;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .main-section {
     .home {
-      padding: 40px 100px;
+      padding: 40px 0;
+      max-width: 1440px;
+      margin: auto;
       display: flex;
       flex-direction: column;
       gap: 50px;
