@@ -17,14 +17,18 @@ const drinksStore = useDrinksStore();
 const drink = drinksStore.getDrink;
 let ingredients: Record<string, string>[] = [];
 
-for (let i = 0; i < Object.keys(drink as drinkType).length; i++) {
+for (let i = 0; i < Object.keys(drink as Record<string, string>).length; i++) {
   if (
-    (drink as any)[`strIngredient${i + 1}`] !== null ||
-    (drink as any)[`strMeasure${i + 1}`] !== null
+    (drink as drinkType)[`strIngredient${i + 1}` as keyof drinkType] !== null ||
+    (drink as drinkType)[`strMeasure${i + 1}` as keyof drinkType] !== null
   ) {
     ingredients.push({
-      ingredient: (drink as any)[`strIngredient${i + 1}`],
-      measure: (drink as any)[`strMeasure${i + 1}`],
+      ingredient: (drink as drinkType)[
+        `strIngredient${i + 1}` as keyof drinkType
+      ] as string,
+      measure: (drink as drinkType)[
+        `strMeasure${i + 1}` as keyof drinkType
+      ] as string,
     });
   } else {
     break;
