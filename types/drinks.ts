@@ -60,6 +60,11 @@ type drinksRes = {
   drinks: drinksListType;
 };
 
+type Ingredients = {
+  ingredient: string;
+  measure: string;
+};
+
 interface drinksState {
   drink: drinkType | undefined;
   topDrinks: drinksRes;
@@ -69,4 +74,4 @@ interface drinksState {
   loadingLatestDrinks: boolean;
 }
 
-export { drinkType, drinksListType, drinksRes, drinksState };
+export { drinkType, drinksListType, drinksRes, drinksState, Ingredients };
