@@ -5,7 +5,9 @@
       :links="[drink?.strCategory as string, drink?.strDrink as string]"
       @OnClickLink="categoryClick"
     />
-    <section class="drink_main-content"></section>
+    <section class="drink_main-content">
+      <Ingredients />
+    </section>
   </main>
   <main v-else>sto caricando...</main>
 </template>
@@ -15,6 +17,7 @@ import { buildUrlPath } from "~~/services/url";
 import { useDrinksStore } from "~~/stores/drinks";
 import { drinkType } from "~~/types/drinks";
 import Hero from "~~/components/LayoutComponent/Hero.vue";
+import Ingredients from "~/components/LayoutComponent/Ingredients.vue";
 
 const drinksStore = useDrinksStore();
 const drink = drinksStore.getDrink as drinkType;
@@ -29,6 +32,8 @@ watchEffect(() => {
 definePageMeta({
   middleware: ["drink-dispatch"],
 });
+
+console.log(drink);
 
 //Methods
 const categoryClick = (link: string | undefined): void => {

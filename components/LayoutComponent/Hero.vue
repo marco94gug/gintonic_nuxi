@@ -9,14 +9,10 @@
   </section>
   <section class="hero" v-else>
     <div class="title" v-if="topDrinks">
-      <h2>{{ (topDrinks as drinkType[])[scrollValue / 100]?.strDrink }}</h2>
+      <h2>{{ topDrinks[scrollValue / 100]?.strDrink }}</h2>
       <div class="categories">
-        <span>{{
-          (topDrinks as drinkType[])[scrollValue / 100]?.strCategory
-        }}</span>
-        <span>{{
-          (topDrinks as drinkType[])[scrollValue / 100]?.strAlcoholic
-        }}</span>
+        <span>{{ topDrinks[scrollValue / 100]?.strCategory }}</span>
+        <span>{{ topDrinks[scrollValue / 100]?.strAlcoholic }}</span>
       </div>
     </div>
     <div>
@@ -136,14 +132,12 @@ const prevPic = (): void => {
           background-color: rgba(0, 0, 0, 0.201);
         }
         .right {
-          //   transform: rotate(90deg);
           padding: 0 8px;
           height: max-content;
         }
       }
 
       .left {
-        // transform: rotate(-90deg);
         padding: 0 8px;
         height: max-content;
       }
@@ -152,6 +146,7 @@ const prevPic = (): void => {
     .img-container {
       position: relative;
       width: 100vw;
+
       .hero-img {
         position: relative;
         top: 0;
@@ -191,29 +186,47 @@ const prevPic = (): void => {
     background-color: white;
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
-    height: max-content;
+    height: 350px;
     margin: auto;
+
+    @include start-from(generic-desktop) {
+      height: 400px;
+      overflow: visible;
+    }
 
     div {
       width: 100%;
+
       .img-container {
         flex-direction: column;
         flex: 0 0 auto;
         width: 100% !important;
+
         .hero-img-static {
-          border: 2px solid yellow;
-          width: 50%;
+          width: 100%;
           height: 100%;
+
+          @include start-from(generic-desktop) {
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.715);
+            height: 0;
+            flex-grow: 1;
+          }
         }
+
         .drink_title {
           position: relative;
           color: $mainFont;
           margin-block: 16px;
-          margin-left: 30px;
+          margin-left: 20px;
+          text-shadow: none;
+          font-weight: 800;
           display: block;
-          width: max-content;
+          width: fit-content;
           height: max-content;
+
+          @include start-from(generic-desktop) {
+            margin-block: 30px;
+          }
         }
       }
     }

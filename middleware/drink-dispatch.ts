@@ -6,7 +6,4 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   drinkStore.stillLoading("drink", true);
   await drinkStore.loadDrink(id);
-
-  // drinkStore.stillLoading("drink", false);
-  console.log(drinkStore.lodaingDrink);
 });
