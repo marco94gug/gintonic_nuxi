@@ -30,7 +30,6 @@ for (let i = 0; i < Object.keys(drink as drinkType).length; i++) {
     break;
   }
 }
-console.log(ingredients);
 </script>
 
 <style lang="scss" scoped>
