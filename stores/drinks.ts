@@ -70,9 +70,12 @@ export const useDrinksStore = defineStore("drinks", {
             i: id,
           },
         });
-        this.drink = undefined;
-        const drinkRes = res.data.value?.drinks[0];
-        this.drink = drinkRes;
+
+        if (res.data.value !== null) {
+          this.drink = res.data.value.drinks[0];
+        } else {
+          throw Error;
+        }
       } catch (error) {
         console.log(error);
         throw error;

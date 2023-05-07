@@ -66,7 +66,7 @@ type Ingredients = {
 };
 
 interface drinksState {
-  drink: drinkType | undefined;
+  drink: drinkType;
   topDrinks: drinksRes;
   mostLatestDrinks: drinksRes | null;
   lodaingDrink: boolean;

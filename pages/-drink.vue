@@ -15,12 +15,11 @@
 <script lang="ts" setup>
 import { buildUrlPath } from "~~/services/url";
 import { useDrinksStore } from "~~/stores/drinks";
-import { drinkType } from "~~/types/drinks";
 import Hero from "~~/components/LayoutComponent/Hero.vue";
 import Ingredients from "~/components/LayoutComponent/Ingredients.vue";
 
 const drinksStore = useDrinksStore();
-const drink = drinksStore.getDrink as drinkType;
+const drink = drinksStore.getDrink;
 const router = useRouter();
 
 watchEffect(() => {
@@ -32,8 +31,6 @@ watchEffect(() => {
 definePageMeta({
   middleware: ["drink-dispatch"],
 });
-
-console.log(drink);
 
 //Methods
 const categoryClick = (link: string | undefined): void => {

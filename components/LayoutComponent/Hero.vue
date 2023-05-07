@@ -207,6 +207,7 @@ const prevPic = (): void => {
           height: 100%;
 
           @include start-from(generic-desktop) {
+            border-radius: 4px;
             box-shadow: 0 0 8px rgba(0, 0, 0, 0.715);
             height: 0;
             flex-grow: 1;

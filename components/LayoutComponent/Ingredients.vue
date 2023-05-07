@@ -14,7 +14,7 @@ import { drinkType, Ingredients } from "~/types/drinks";
 import { useDrinksStore } from "~~/stores/drinks";
 
 const drinksStore = useDrinksStore();
-const drink = drinksStore.getDrink as drinkType;
+const drink = drinksStore.getDrink;
 let ingredients: Ingredients[] = [];
 
 for (let i = 0; i < Object.keys(drink).length; i++) {
