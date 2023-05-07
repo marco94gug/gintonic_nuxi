@@ -14,8 +14,8 @@ import Hero from "~~/components/LayoutComponent/Hero.vue";
 import { useDrinksStore } from "~~/stores/drinks";
 
 const drinkStore = useDrinksStore();
-const topDrinks = drinkStore.getTopDrinks as any;
-const mostLatestDrinks = drinkStore.getMostLatestDrinks as any;
+const topDrinks = drinkStore.getTopDrinks;
+const mostLatestDrinks = drinkStore.getMostLatestDrinks;
 
 definePageMeta({
   middleware: ["home-dispatch"],

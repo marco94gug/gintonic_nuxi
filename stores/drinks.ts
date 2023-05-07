@@ -21,8 +21,8 @@ export const useDrinksStore = defineStore("drinks", {
 
   getters: {
     getDrink: (state) => state.drink,
-    getTopDrinks: (state) => state.topDrinks,
-    getMostLatestDrinks: (state) => state.mostLatestDrinks,
+    getTopDrinks: (state) => state.topDrinks as drinksListType,
+    getMostLatestDrinks: (state) => state.mostLatestDrinks as drinksListType,
     isTopDrinkLoading: (state) => state.loadingTopDrinks,
     isDrinkLoading: (state) => state.lodaingDrink,
     isLatestLoading: (state) => state.loadingLatestDrinks,
@@ -47,19 +47,27 @@ export const useDrinksStore = defineStore("drinks", {
     },
 
     async loadTopDrinks() {
-      this.stillLoading("topDrinks", true);
-      const res = await useFetch<drinksRes>("popular.php", {
-        baseURL: useRuntimeConfig().public.apiBase,
-        headers: {
-          "Content-Type": "application/json",
-          "X-RapidAPI-Key": useRuntimeConfig().public.apiSecret,
-          "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
-        },
-      });
+      try {
+        this.stillLoading("topDrinks", true);
+        const res = await useFetch<drinksListType>("popular.php", {
+          baseURL: useRuntimeConfig().public.apiBase,
+          headers: {
+            "Content-Type": "application/json",
+            "X-RapidAPI-Key": useRuntimeConfig().public.apiSecret,
+            "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
+          },
+        });
 
-      const topDrinksRes = res.data.value;
-      this.topDrinks = topDrinksRes as drinksRes;
-      this.stillLoading("topDrinks", false);
+        if (res.data.value !== null) {
+          const topDrinksRes = res.data.value;
+          this.topDrinks = topDrinksRes;
+          this.stillLoading("topDrinks", false);
+        } else {
+          throw Error;
+        }
+      } catch (error) {
+        console.error(error);
+      }
     },
 
     async loadDrink(id: string) {
@@ -83,17 +91,25 @@ export const useDrinksStore = defineStore("drinks", {
     },
 
     async loadMostLatestDrinks() {
-      const res = await useFetch<drinksRes>("latest.php", {
-        baseURL: useRuntimeConfig().public.apiBase,
-        headers: {
-          "Content-Type": "application/json",
-          "X-RapidAPI-Key": useRuntimeConfig().public.apiSecret,
-          "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
-        },
-      });
+      try {
+        const res = await useFetch<drinksListType>("latest.php", {
+          baseURL: useRuntimeConfig().public.apiBase,
+          headers: {
+            "Content-Type": "application/json",
+            "X-RapidAPI-Key": useRuntimeConfig().public.apiSecret,
+            "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
+          },
+        });
 
-      const mostLatestRes = res.data.value;
-      this.mostLatestDrinks = mostLatestRes;
+        if (res.data.value !== null) {
+          const mostLatestRes = res.data.value;
+          this.mostLatestDrinks = mostLatestRes;
+        } else {
+          throw Error;
+        }
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 });
