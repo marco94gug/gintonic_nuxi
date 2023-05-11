@@ -56,6 +56,7 @@ const drink = drinksStore.getDrink as DrinkPayload;
   .list {
     display: flex;
     flex-direction: column;
+    padding-inline: 20px;
     gap: 10px;
 
     @include start-from(generic-desktop) {
@@ -74,7 +75,7 @@ const drink = drinksStore.getDrink as DrinkPayload;
         height: 4px;
         background-color: none;
         border-radius: 50%;
-        border: 2px solid $mainFont;
+        border: 2px solid $greySecondary;
         margin-right: 15px;
       }
 
