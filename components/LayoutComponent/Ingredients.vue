@@ -2,7 +2,7 @@
   <section class="ingredients">
     <h3>Ingredients:</h3>
     <ul class="list">
-      <li v-for="ingredient in ingredients">
+      <li v-for="ingredient in drink.ingredients">
         {{ ingredient.ingredient }} <span>{{ ingredient.measure }}</span>
       </li>
     </ul>
@@ -15,21 +15,21 @@ import { useDrinksStore } from "~~/stores/drinks";
 
 const drinksStore = useDrinksStore();
 const drink = drinksStore.getDrink;
-let ingredients: Ingredients[] = [];
+// let ingredients: Ingredients[] = [];
 
-for (let i = 0; i < Object.keys(drink).length; i++) {
-  if (
-    drink[`strIngredient${i + 1}` as keyof drinkType] !== null ||
-    drink[`strMeasure${i + 1}` as keyof drinkType] !== null
-  ) {
-    ingredients.push({
-      ingredient: drink[`strIngredient${i + 1}` as keyof drinkType] as string,
-      measure: drink[`strMeasure${i + 1}` as keyof drinkType] as string,
-    });
-  } else {
-    break;
-  }
-}
+// for (let i = 0; i < Object.keys(drink).length; i++) {
+//   if (
+//     drink[`strIngredient${i + 1}` as keyof drinkType] !== null ||
+//     drink[`strMeasure${i + 1}` as keyof drinkType] !== null
+//   ) {
+//     ingredients.push({
+//       ingredient: drink[`strIngredient${i + 1}` as keyof drinkType] as string,
+//       measure: drink[`strMeasure${i + 1}` as keyof drinkType] as string,
+//     });
+//   } else {
+//     break;
+//   }
+// }
 </script>
 
 <style lang="scss" scoped>

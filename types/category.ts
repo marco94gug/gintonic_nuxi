@@ -1,8 +1,6 @@
 import { drinksListType } from "./drinks";
 
-type CategoryResponse = {
-  drinks: Array<DrinksType>;
-};
+type CategoryResponse = Array<DrinksType>;
 
 type DrinksType = {
   strCategory: string;
@@ -14,9 +12,7 @@ type DrinkFiltered = {
   idDrink: string;
 };
 
-interface FilteredDrinkByCategory {
-  drinks: DrinkFiltered[];
-}
+type FilteredDrinkByCategory = DrinkFiltered[];
 
 type CategoryListType = {
   categoryList: CategoryResponse | null;

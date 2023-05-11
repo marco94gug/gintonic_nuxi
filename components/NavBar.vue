@@ -25,7 +25,7 @@
         }`"
       >
         <li
-          v-for="category in categoryStore?.getCategoryList?.drinks"
+          v-for="category in categoryStore?.getCategoryList"
           @click="handleCategoryClick(category)"
         >
           {{ category.strCategory }}

@@ -17,8 +17,8 @@ export const useCategoryStore = defineStore("category", {
 
   getters: {
     getCategoryList: (state) => state.categoryList,
-    getFilteredByCategory: (state) => state.filteredByCategory?.drinks,
-    getDrinksResults: (state) => state.drinksResults?.drinks,
+    getFilteredByCategory: (state) => state.filteredByCategory,
+    getDrinksResults: (state) => state.drinksResults,
   },
 
   actions: {
@@ -35,11 +35,8 @@ export const useCategoryStore = defineStore("category", {
     //Actions
     async load() {
       try {
-        const res = await useFetch<CategoryResponse>("list.php", {
-          baseURL: useRuntimeConfig().public.apiFreeBase,
-          params: {
-            c: "list",
-          },
+        const res = await useFetch<CategoryResponse>("/category/list/", {
+          baseURL: useRuntimeConfig().public.baseURL,
         });
 
         const categoryRes = res.data.value;
@@ -51,8 +48,8 @@ export const useCategoryStore = defineStore("category", {
 
     async loadCategoryFilter(category: string) {
       try {
-        const res = await useFetch<FilteredDrinkByCategory>("filter.php", {
-          baseURL: useRuntimeConfig().public.apiFreeBase,
+        const res = await useFetch<FilteredDrinkByCategory>("drinks", {
+          baseURL: useRuntimeConfig().public.baseURL,
           params: {
             c: category,
           },
@@ -67,10 +64,10 @@ export const useCategoryStore = defineStore("category", {
 
     async loadSearchResultedForPage(query: string) {
       try {
-        const res = await useFetch<drinksListType>("search.php", {
-          baseURL: useRuntimeConfig().public.apiFreeBase,
+        const res = await useFetch<drinksListType>("search/", {
+          baseURL: useRuntimeConfig().public.baseURL,
           params: {
-            s: query,
+            t: query,
           },
         });
         this.clearCategoryResults();

@@ -22,10 +22,10 @@ const useSearchStore = defineStore("search", {
     //async Actions:
     async loadSearchResults(searchParam: string) {
       try {
-        const res = await useFetch<drinksListType>("search.php", {
-          baseURL: useRuntimeConfig().public.apiFreeBase,
+        const res = await useFetch<drinksListType>("search", {
+          baseURL: useRuntimeConfig().public.baseURL,
           params: {
-            s: searchParam,
+            t: searchParam,
           },
         });
         const resultsDrinks = res.data.value;

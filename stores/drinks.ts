@@ -1,10 +1,5 @@
 import { defineStore } from "pinia";
-import {
-  drinksState,
-  drinksRes,
-  drinkType,
-  drinksListType,
-} from "~~/types/drinks";
+import { drinksState, drinksListType, drinkType } from "~~/types/drinks";
 
 type loadCases = "drink" | "topDrinks" | "latestDrinks";
 
@@ -49,12 +44,10 @@ export const useDrinksStore = defineStore("drinks", {
     async loadTopDrinks() {
       try {
         this.stillLoading("topDrinks", true);
-        const res = await useFetch<drinksListType>("popular.php", {
-          baseURL: useRuntimeConfig().public.apiBase,
+        const res = await useFetch<drinksListType>("popular", {
+          baseURL: useRuntimeConfig().public.baseURL,
           headers: {
             "Content-Type": "application/json",
-            "X-RapidAPI-Key": useRuntimeConfig().public.apiSecret,
-            "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
           },
         });
 
@@ -72,15 +65,12 @@ export const useDrinksStore = defineStore("drinks", {
 
     async loadDrink(id: string) {
       try {
-        const res = await useFetch<drinksListType>("lookup.php", {
-          baseURL: useRuntimeConfig().public.apiFreeBase,
-          params: {
-            i: id,
-          },
+        const res = await useFetch<drinkType>(`/drinks/${id}`, {
+          baseURL: useRuntimeConfig().public.baseURL,
         });
 
         if (res.data.value !== null) {
-          this.drink = res.data.value.drinks[0];
+          this.drink = res.data.value;
         } else {
           throw Error;
         }
@@ -92,12 +82,10 @@ export const useDrinksStore = defineStore("drinks", {
 
     async loadMostLatestDrinks() {
       try {
-        const res = await useFetch<drinksListType>("latest.php", {
-          baseURL: useRuntimeConfig().public.apiBase,
+        const res = await useFetch<drinksListType>("latest", {
+          baseURL: useRuntimeConfig().public.baseURL,
           headers: {
             "Content-Type": "application/json",
-            "X-RapidAPI-Key": useRuntimeConfig().public.apiSecret,
-            "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
           },
         });
 

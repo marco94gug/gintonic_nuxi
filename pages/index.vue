@@ -1,9 +1,9 @@
 <template>
   <div class="main-section">
-    <Hero :topDrinks="topDrinks?.drinks" />
+    <Hero :topDrinks="topDrinks" />
     <section class="home">
-      <Carousel title="Top Drinks" :dataList="topDrinks?.drinks" />
-      <Carousel title="Most Latest" :dataList="mostLatestDrinks?.drinks" />
+      <Carousel title="Top Drinks" :dataList="topDrinks" />
+      <Carousel title="Most Latest" :dataList="mostLatestDrinks" />
     </section>
   </div>
 </template>
