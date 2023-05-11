@@ -14,12 +14,12 @@
 </template>
 
 <script lang="ts" setup>
-import { drinkType } from "~~/types/drinks";
+import { DrinkPayload } from "~~/types/drinks";
 
 const route = useRoute();
 
 defineProps<{
-  drinkInfo: drinkType;
+  drinkInfo: DrinkPayload;
 }>();
 
 const emit = defineEmits<{

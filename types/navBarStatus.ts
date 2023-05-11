@@ -1,6 +1,6 @@
-interface navBarStatusType {
+interface NavBarState {
   hamMenuIsActive: boolean;
   categoryListIsActive: boolean;
 }
 
-export { navBarStatusType };
+export { NavBarState };

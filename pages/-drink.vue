@@ -17,13 +17,14 @@ import { buildUrlPath } from "~~/services/url";
 import { useDrinksStore } from "~~/stores/drinks";
 import Hero from "~~/components/LayoutComponent/Hero.vue";
 import Ingredients from "~/components/LayoutComponent/Ingredients.vue";
+import { DrinkPayload } from "~/types/drinks";
 
 const drinksStore = useDrinksStore();
-const drink = drinksStore.getDrink;
+const drink = drinksStore.getDrink as DrinkPayload;
 const router = useRouter();
 
 watchEffect(() => {
-  if (drinksStore.drink?.strDrink) {
+  if (drink?.strDrink) {
     drinksStore.stillLoading("drink", false);
   }
 });

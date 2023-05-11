@@ -1,4 +1,4 @@
-interface drinkType {
+interface DrinkPayload {
   idDrink: string;
   strDrink: string;
   strDrinkAlternate: string;
@@ -23,24 +23,20 @@ interface drinkType {
   dateModified?: string;
 }
 
-type drinksListType = drinkType[];
-
-type drinksRes = {
-  drinks: drinksListType;
-};
+type DrinksListResponse = DrinkPayload[];
 
 type Ingredients = {
   ingredient: string;
   measure: string;
 };
 
-interface drinksState {
-  drink: drinkType;
-  topDrinks: drinksListType;
-  mostLatestDrinks: drinksListType;
+interface DrinksStoreState {
+  drink: DrinkPayload | {};
+  topDrinks: DrinksListResponse | [];
+  mostLatestDrinks: DrinksListResponse | [];
   lodaingDrink: boolean;
   loadingTopDrinks: boolean;
   loadingLatestDrinks: boolean;
 }
 
-export { drinkType, drinksListType, drinksRes, drinksState, Ingredients };
+export { DrinksStoreState, Ingredients, DrinksListResponse, DrinkPayload };

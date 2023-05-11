@@ -1,23 +1,26 @@
 import { defineStore } from "pinia";
-import { drinksState, drinksListType, drinkType } from "~~/types/drinks";
+import {
+  DrinksStoreState,
+  DrinksListResponse,
+  DrinkPayload,
+} from "~~/types/drinks";
 
 type loadCases = "drink" | "topDrinks" | "latestDrinks";
 
 export const useDrinksStore = defineStore("drinks", {
-  state: (): drinksState =>
-    ({
-      drink: {},
-      topDrinks: {},
-      mostLatestDrinks: {},
-      lodaingDrink: true,
-      loadingTopDrinks: true,
-      loadingLatestDrinks: true,
-    } as drinksState),
+  state: (): DrinksStoreState => ({
+    drink: {},
+    topDrinks: [],
+    mostLatestDrinks: [],
+    lodaingDrink: true,
+    loadingTopDrinks: true,
+    loadingLatestDrinks: true,
+  }),
 
   getters: {
     getDrink: (state) => state.drink,
-    getTopDrinks: (state) => state.topDrinks as drinksListType,
-    getMostLatestDrinks: (state) => state.mostLatestDrinks as drinksListType,
+    getTopDrinks: (state) => state.topDrinks,
+    getMostLatestDrinks: (state) => state.mostLatestDrinks,
     isTopDrinkLoading: (state) => state.loadingTopDrinks,
     isDrinkLoading: (state) => state.lodaingDrink,
     isLatestLoading: (state) => state.loadingLatestDrinks,
@@ -44,7 +47,7 @@ export const useDrinksStore = defineStore("drinks", {
     async loadTopDrinks() {
       try {
         this.stillLoading("topDrinks", true);
-        const res = await useFetch<drinksListType>("popular", {
+        const res = await useFetch<DrinksListResponse>("popular", {
           baseURL: useRuntimeConfig().public.baseURL,
           headers: {
             "Content-Type": "application/json",
@@ -65,7 +68,7 @@ export const useDrinksStore = defineStore("drinks", {
 
     async loadDrink(id: string) {
       try {
-        const res = await useFetch<drinkType>(`/drinks/${id}`, {
+        const res = await useFetch<DrinkPayload>(`/drinks/${id}`, {
           baseURL: useRuntimeConfig().public.baseURL,
         });
 
@@ -82,7 +85,7 @@ export const useDrinksStore = defineStore("drinks", {
 
     async loadMostLatestDrinks() {
       try {
-        const res = await useFetch<drinksListType>("latest", {
+        const res = await useFetch<DrinksListResponse>("latest", {
           baseURL: useRuntimeConfig().public.baseURL,
           headers: {
             "Content-Type": "application/json",

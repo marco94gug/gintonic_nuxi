@@ -10,26 +10,11 @@
 </template>
 
 <script lang="ts" setup>
-import { drinkType, Ingredients } from "~/types/drinks";
+import { DrinkPayload } from "~/types/drinks";
 import { useDrinksStore } from "~~/stores/drinks";
 
 const drinksStore = useDrinksStore();
-const drink = drinksStore.getDrink;
-// let ingredients: Ingredients[] = [];
-
-// for (let i = 0; i < Object.keys(drink).length; i++) {
-//   if (
-//     drink[`strIngredient${i + 1}` as keyof drinkType] !== null ||
-//     drink[`strMeasure${i + 1}` as keyof drinkType] !== null
-//   ) {
-//     ingredients.push({
-//       ingredient: drink[`strIngredient${i + 1}` as keyof drinkType] as string,
-//       measure: drink[`strMeasure${i + 1}` as keyof drinkType] as string,
-//     });
-//   } else {
-//     break;
-//   }
-// }
+const drink = drinksStore.getDrink as DrinkPayload;
 </script>
 
 <style lang="scss" scoped>

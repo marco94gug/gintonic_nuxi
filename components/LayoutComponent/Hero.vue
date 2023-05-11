@@ -44,13 +44,13 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import "primeicons/primeicons.css";
-import { drinkType } from "~~/types/drinks";
+import { DrinkPayload, DrinksListResponse } from "~~/types/drinks";
 
 const scrollValue = ref<number>(100);
 
 const props = defineProps<{
-  topDrinks?: drinkType[];
-  drinkInfo?: drinkType;
+  topDrinks?: DrinksListResponse;
+  drinkInfo?: DrinkPayload;
 }>();
 
 const maxValue = (): number => {

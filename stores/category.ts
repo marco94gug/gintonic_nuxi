@@ -1,19 +1,14 @@
 import { _AsyncData } from "nuxt/dist/app/composables/asyncData";
 import { defineStore } from "pinia";
-import {
-  CategoryListType,
-  CategoryResponse,
-  FilteredDrinkByCategory,
-} from "~~/types/category";
-import { drinksListType } from "~~/types/drinks";
+import { CategoryState, CategoryResponse } from "~~/types/category";
+import { DrinksListResponse } from "~~/types/drinks";
 
 export const useCategoryStore = defineStore("category", {
-  state: () =>
-    ({
-      categoryList: {},
-      filteredByCategory: {},
-      drinksResults: {},
-    } as CategoryListType),
+  state: (): CategoryState => ({
+    categoryList: [],
+    filteredByCategory: [],
+    drinksResults: [],
+  }),
 
   getters: {
     getCategoryList: (state) => state.categoryList,
@@ -27,10 +22,10 @@ export const useCategoryStore = defineStore("category", {
       this.$reset();
     },
     clearCategoryResults() {
-      this.filteredByCategory = {} as drinksListType;
+      this.filteredByCategory = [];
     },
     clearDrinksResults() {
-      this.drinksResults = {} as drinksListType;
+      this.drinksResults = [];
     },
     //Actions
     async load() {
@@ -39,8 +34,12 @@ export const useCategoryStore = defineStore("category", {
           baseURL: useRuntimeConfig().public.baseURL,
         });
 
-        const categoryRes = res.data.value;
-        this.categoryList = categoryRes;
+        if (res.data.value !== null) {
+          const categoryRes = res.data.value;
+          this.categoryList = categoryRes;
+        } else {
+          throw Error;
+        }
       } catch (error) {
         console.error(error);
       }
@@ -48,7 +47,7 @@ export const useCategoryStore = defineStore("category", {
 
     async loadCategoryFilter(category: string) {
       try {
-        const res = await useFetch<FilteredDrinkByCategory>("category", {
+        const res = await useFetch<DrinksListResponse>("category", {
           baseURL: useRuntimeConfig().public.baseURL,
           params: {
             c: category,
@@ -56,7 +55,12 @@ export const useCategoryStore = defineStore("category", {
         });
         this.clearDrinksResults();
         const drinkListFilteredByCategory = res.data.value;
-        this.filteredByCategory = drinkListFilteredByCategory;
+
+        if (drinkListFilteredByCategory !== null) {
+          this.filteredByCategory = drinkListFilteredByCategory;
+        } else {
+          throw Error;
+        }
       } catch (error) {
         console.error(error);
       }
@@ -64,7 +68,7 @@ export const useCategoryStore = defineStore("category", {
 
     async loadSearchResultedForPage(query: string) {
       try {
-        const res = await useFetch<drinksListType>("search", {
+        const res = await useFetch<DrinksListResponse>("search", {
           baseURL: useRuntimeConfig().public.baseURL,
           params: {
             t: query,
@@ -73,7 +77,12 @@ export const useCategoryStore = defineStore("category", {
         this.clearCategoryResults();
 
         const results = res.data.value;
-        this.drinksResults = results;
+
+        if (results !== null) {
+          this.drinksResults = results;
+        } else {
+          throw Error;
+        }
       } catch (error) {
         console.error(error);
       }

@@ -39,7 +39,7 @@
 
 <script lang="ts" setup>
 import { buildUrlPath } from "../services/url";
-import { DrinksType } from "../types/category";
+import { CategoryPayload } from "../types/category";
 
 import { useNavBarStore } from "../stores/navbar";
 import { useCategoryStore } from "~~/stores/category";
@@ -72,7 +72,7 @@ function handleHomeClick(): void {
   closeAllOpenedMenus();
 }
 
-function handleCategoryClick(category: DrinksType): void {
+function handleCategoryClick(category: CategoryPayload): void {
   closeAllOpenedMenus();
   router.push({
     name: "search-page",

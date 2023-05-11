@@ -12,7 +12,7 @@
         <Card
           v-for="drink in categoryStore.getFilteredByCategory ??
           categoryStore.getDrinksResults"
-          :drinkInfo="(drink as drinkType)"
+          :drinkInfo="drink"
           @clicked="clickCard"
         >
           <template v-slot:see-more>
@@ -21,7 +21,7 @@
         </Card>
       </div>
       <div class="no-results" v-else>
-        <h3>Something went wrong :(</h3>
+        <h3>Something went wrong :&#40;</h3>
         <img src="../../assets/img/404.png" />
       </div>
     </div>
@@ -31,7 +31,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useCategoryStore } from "~~/stores/category";
-import { drinkType } from "~~/types/drinks";
 
 const route = useRoute();
 const router = useRouter();
