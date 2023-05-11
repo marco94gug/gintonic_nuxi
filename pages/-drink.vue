@@ -18,7 +18,7 @@
             type="text/html"
             width="100%"
             height="360"
-            :src="`http://www.youtube.com/embed/${IDYoutubeVideo(
+            :src="`https://www.youtube.com/embed/${IDYoutubeVideo(
               drink.strVideo
             )}`"
             frameborder="0"
