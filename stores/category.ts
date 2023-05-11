@@ -48,7 +48,7 @@ export const useCategoryStore = defineStore("category", {
 
     async loadCategoryFilter(category: string) {
       try {
-        const res = await useFetch<FilteredDrinkByCategory>("drinks", {
+        const res = await useFetch<FilteredDrinkByCategory>("category", {
           baseURL: useRuntimeConfig().public.baseURL,
           params: {
             c: category,
@@ -64,7 +64,7 @@ export const useCategoryStore = defineStore("category", {
 
     async loadSearchResultedForPage(query: string) {
       try {
-        const res = await useFetch<drinksListType>("search/", {
+        const res = await useFetch<drinksListType>("search", {
           baseURL: useRuntimeConfig().public.baseURL,
           params: {
             t: query,
