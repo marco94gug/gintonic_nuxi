@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import { drinkType } from "~~/types/drinks";
+import { DrinkPayload, DrinksListResponse } from "~~/types/drinks";
 
 const cardScroller = ref<HTMLDivElement | null>(null);
 const clientWidth = ref(1);
@@ -39,7 +39,7 @@ const scrollWidth = ref(0);
 const router = useRouter();
 
 const props = defineProps<{
-  dataList?: drinkType[];
+  dataList: DrinksListResponse;
   title: string;
 }>();
 
@@ -75,8 +75,8 @@ const isMinScrollValue = (): boolean => {
 };
 
 //Methods
-const dataListLength = (n: number): drinkType[] => {
-  return (props.dataList as drinkType[])?.filter((_, i: number) => i < n);
+const dataListLength = (n: number): DrinksListResponse => {
+  return props.dataList?.filter((_, i: number) => i < n);
 };
 
 const scrollTo = (direction: string): void => {
@@ -117,7 +117,7 @@ const clickCard = (id: string): void => {
   padding: 10px 0;
   .carousel {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     width: 100%;
     padding-block: 5px;
     overflow-x: scroll;
@@ -180,7 +180,7 @@ const clickCard = (id: string): void => {
       display: flex;
     }
     .carousel {
-      gap: 10px;
+      gap: 16px;
     }
   }
 }

@@ -1,12 +1,12 @@
 import { defineStore } from "pinia";
-import { navBarStatusType } from "~~/types/navBarStatus";
+import { NavBarState } from "~~/types/navBarStatus";
 
 export const useNavBarStore = defineStore("navBar", {
-  state: () => {
+  state: (): NavBarState => {
     return {
       hamMenuIsActive: false,
       categoryListIsActive: false,
-    } as navBarStatusType;
+    };
   },
 
   getters: {

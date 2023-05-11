@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
-import { drinksListType } from "~~/types/drinks";
+import { DrinksListResponse } from "~~/types/drinks";
 
 const useSearchStore = defineStore("search", {
-  state: () => {
+  state: (): { drinksList: DrinksListResponse | [] } => {
     return {
-      drinksList: {} as drinksListType | null,
+      drinksList: [],
     };
   },
 
@@ -14,7 +14,6 @@ const useSearchStore = defineStore("search", {
 
   actions: {
     //Mutations:
-
     clearSearchResults() {
       this.$reset();
     },
@@ -22,15 +21,19 @@ const useSearchStore = defineStore("search", {
     //async Actions:
     async loadSearchResults(searchParam: string) {
       try {
-        const res = await useFetch<drinksListType>("search.php", {
-          baseURL: useRuntimeConfig().public.apiFreeBase,
+        const res = await useFetch<DrinksListResponse>("search", {
+          baseURL: useRuntimeConfig().public.baseURL,
           params: {
-            s: searchParam,
+            t: searchParam,
           },
         });
         const resultsDrinks = res.data.value;
 
-        this.drinksList = resultsDrinks;
+        if (resultsDrinks !== null) {
+          this.drinksList = resultsDrinks;
+        } else {
+          throw Error;
+        }
       } catch (error) {
         console.error(error);
       }

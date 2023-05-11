@@ -1,33 +1,15 @@
-import { drinksListType } from "./drinks";
+import { DrinksListResponse } from "./drinks";
 
-type CategoryResponse = {
-  drinks: Array<DrinksType>;
-};
+type CategoryResponse = CategoryPayload[];
 
-type DrinksType = {
+type CategoryPayload = {
   strCategory: string;
 };
 
-type DrinkFiltered = {
-  strDrink: string;
-  strDrinkThumb: string;
-  idDrink: string;
+type CategoryState = {
+  categoryList: CategoryResponse | [];
+  filteredByCategory: DrinksListResponse | [];
+  drinksResults: DrinksListResponse | [];
 };
 
-interface FilteredDrinkByCategory {
-  drinks: DrinkFiltered[];
-}
-
-type CategoryListType = {
-  categoryList: CategoryResponse | null;
-  filteredByCategory: FilteredDrinkByCategory | null;
-  drinksResults: drinksListType | null;
-};
-
-export {
-  CategoryListType,
-  CategoryResponse,
-  DrinksType,
-  DrinkFiltered,
-  FilteredDrinkByCategory,
-};
+export { CategoryState, CategoryResponse, CategoryPayload };

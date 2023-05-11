@@ -1,5 +1,5 @@
 <template>
-  <section class="hero" v-if="$route.name === 'drink'">
+  <section class="hero drink" v-if="$route.name === 'drink'">
     <div>
       <div class="img-container" style="width: 100vw">
         <h2 class="drink_title">{{ drinkInfo?.strDrink }}</h2>
@@ -9,14 +9,10 @@
   </section>
   <section class="hero" v-else>
     <div class="title" v-if="topDrinks">
-      <h2>{{ (topDrinks as drinkType[])[scrollValue / 100]?.strDrink }}</h2>
+      <h2>{{ topDrinks[scrollValue / 100]?.strDrink }}</h2>
       <div class="categories">
-        <span>{{
-          (topDrinks as drinkType[])[scrollValue / 100]?.strCategory
-        }}</span>
-        <span>{{
-          (topDrinks as drinkType[])[scrollValue / 100]?.strAlcoholic
-        }}</span>
+        <span>{{ topDrinks[scrollValue / 100]?.strCategory }}</span>
+        <span>{{ topDrinks[scrollValue / 100]?.strAlcoholic }}</span>
       </div>
     </div>
     <div>
@@ -48,13 +44,13 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import "primeicons/primeicons.css";
-import { drinkType } from "~~/types/drinks";
+import { DrinkPayload, DrinksListResponse } from "~~/types/drinks";
 
 const scrollValue = ref<number>(100);
 
 const props = defineProps<{
-  topDrinks?: drinkType[];
-  drinkInfo?: drinkType;
+  topDrinks?: DrinksListResponse;
+  drinkInfo?: DrinkPayload;
 }>();
 
 const maxValue = (): number => {
@@ -136,14 +132,12 @@ const prevPic = (): void => {
           background-color: rgba(0, 0, 0, 0.201);
         }
         .right {
-          //   transform: rotate(90deg);
           padding: 0 8px;
           height: max-content;
         }
       }
 
       .left {
-        // transform: rotate(-90deg);
         padding: 0 8px;
         height: max-content;
       }
@@ -152,6 +146,7 @@ const prevPic = (): void => {
     .img-container {
       position: relative;
       width: 100vw;
+
       .hero-img {
         position: relative;
         top: 0;
@@ -185,6 +180,57 @@ const prevPic = (): void => {
     font-size: 1.8rem;
     color: $whiteTransparentFont;
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.715);
+  }
+
+  &.drink {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    margin: auto;
+
+    @include start-from(generic-desktop) {
+      height: 400px;
+      overflow: visible;
+    }
+
+    div {
+      width: 100%;
+
+      .img-container {
+        flex-direction: column;
+        flex: 0 0 auto;
+        width: 100% !important;
+
+        .hero-img-static {
+          width: 100%;
+          height: 100%;
+
+          @include start-from(generic-desktop) {
+            border-radius: 4px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.715);
+            height: 0;
+            flex-grow: 1;
+          }
+        }
+
+        .drink_title {
+          position: relative;
+          color: $mainFont;
+          margin-block: 16px;
+          margin-left: 20px;
+          text-shadow: none;
+          font-weight: 800;
+          display: block;
+          width: fit-content;
+          height: max-content;
+
+          @include start-from(generic-desktop) {
+            margin-block: 30px;
+          }
+        }
+      }
+    }
   }
 }
 

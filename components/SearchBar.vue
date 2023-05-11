@@ -16,7 +16,7 @@
     <div v-if="isResultsVisible()" class="results">
       <ul>
         <li
-          v-for="drink in searchStore.getDrinksListResult?.drinks"
+          v-for="drink in searchStore.getDrinksListResult"
           :id="drink.idDrink"
           @click="handleDrinkClick"
         >
@@ -74,7 +74,7 @@ const clearSearchBar = (): void => {
 
 const isResultsVisible = (): boolean => {
   return Boolean(
-    searchStore.getDrinksListResult?.drinks && inputValue.value.length > 1
+    searchStore.getDrinksListResult && inputValue.value.length > 1
   );
 };
 </script>

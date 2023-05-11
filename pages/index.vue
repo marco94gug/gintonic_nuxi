@@ -1,9 +1,9 @@
 <template>
   <div class="main-section">
-    <Hero :topDrinks="topDrinks?.drinks" />
+    <Hero :topDrinks="topDrinks" />
     <section class="home">
-      <Carousel title="Top Drinks" :dataList="topDrinks?.drinks" />
-      <Carousel title="Most Latest" :dataList="mostLatestDrinks?.drinks" />
+      <Carousel title="Top Drinks" :dataList="topDrinks" />
+      <Carousel title="Most Latest" :dataList="mostLatestDrinks" />
     </section>
   </div>
 </template>
@@ -14,8 +14,8 @@ import Hero from "~~/components/LayoutComponent/Hero.vue";
 import { useDrinksStore } from "~~/stores/drinks";
 
 const drinkStore = useDrinksStore();
-const topDrinks = drinkStore.getTopDrinks as any;
-const mostLatestDrinks = drinkStore.getMostLatestDrinks as any;
+const topDrinks = drinkStore.getTopDrinks;
+const mostLatestDrinks = drinkStore.getMostLatestDrinks;
 
 definePageMeta({
   middleware: ["home-dispatch"],
@@ -23,22 +23,36 @@ definePageMeta({
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/utils";
 .main-section {
   display: flex;
   flex-direction: column;
 
   .home {
     padding-block: 20px;
+    padding-inline: 15px;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .main-section {
     .home {
-      padding: 40px 100px;
+      padding: 40px 0;
+      margin: auto;
+      max-width: 720px;
       display: flex;
       flex-direction: column;
       gap: 50px;
+
+      @include start-from("desktop") {
+        max-width: 980px;
+      }
+      @include start-from("desktop-large") {
+        max-width: 1220px;
+      }
+      @include start-from("desktop-extralarge") {
+        max-width: 1440px;
+      }
     }
   }
 }

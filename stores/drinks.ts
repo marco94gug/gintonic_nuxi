@@ -1,23 +1,21 @@
 import { defineStore } from "pinia";
 import {
-  drinksState,
-  drinksRes,
-  drinkType,
-  drinksListType,
+  DrinksStoreState,
+  DrinksListResponse,
+  DrinkPayload,
 } from "~~/types/drinks";
 
 type loadCases = "drink" | "topDrinks" | "latestDrinks";
 
 export const useDrinksStore = defineStore("drinks", {
-  state: (): drinksState =>
-    ({
-      drink: {},
-      topDrinks: {},
-      mostLatestDrinks: {},
-      lodaingDrink: true,
-      loadingTopDrinks: true,
-      loadingLatestDrinks: true,
-    } as drinksState),
+  state: (): DrinksStoreState => ({
+    drink: {},
+    topDrinks: [],
+    mostLatestDrinks: [],
+    lodaingDrink: true,
+    loadingTopDrinks: true,
+    loadingLatestDrinks: true,
+  }),
 
   getters: {
     getDrink: (state) => state.drink,
@@ -47,32 +45,38 @@ export const useDrinksStore = defineStore("drinks", {
     },
 
     async loadTopDrinks() {
-      this.stillLoading("topDrinks", true);
-      const res = await useFetch<drinksRes>("popular.php", {
-        baseURL: useRuntimeConfig().public.apiBase,
-        headers: {
-          "Content-Type": "application/json",
-          "X-RapidAPI-Key": useRuntimeConfig().public.apiSecret,
-          "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
-        },
-      });
+      try {
+        this.stillLoading("topDrinks", true);
+        const res = await useFetch<DrinksListResponse>("popular", {
+          baseURL: useRuntimeConfig().public.baseURL,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-      const topDrinksRes = res.data.value;
-      this.topDrinks = topDrinksRes as drinksRes;
-      this.stillLoading("topDrinks", false);
+        if (res.data.value !== null) {
+          const topDrinksRes = res.data.value;
+          this.topDrinks = topDrinksRes;
+          this.stillLoading("topDrinks", false);
+        } else {
+          throw Error;
+        }
+      } catch (error) {
+        console.error(error);
+      }
     },
 
     async loadDrink(id: string) {
       try {
-        const res = await useFetch<drinksListType>("lookup.php", {
-          baseURL: useRuntimeConfig().public.apiFreeBase,
-          params: {
-            i: id,
-          },
+        const res = await useFetch<DrinkPayload>(`/drinks/${id}`, {
+          baseURL: useRuntimeConfig().public.baseURL,
         });
-        this.drink = undefined;
-        const drinkRes = res.data.value?.drinks[0];
-        this.drink = drinkRes;
+
+        if (res.data.value !== null) {
+          this.drink = res.data.value;
+        } else {
+          throw Error;
+        }
       } catch (error) {
         console.log(error);
         throw error;
@@ -80,17 +84,23 @@ export const useDrinksStore = defineStore("drinks", {
     },
 
     async loadMostLatestDrinks() {
-      const res = await useFetch<drinksRes>("latest.php", {
-        baseURL: useRuntimeConfig().public.apiBase,
-        headers: {
-          "Content-Type": "application/json",
-          "X-RapidAPI-Key": useRuntimeConfig().public.apiSecret,
-          "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com",
-        },
-      });
+      try {
+        const res = await useFetch<DrinksListResponse>("latest", {
+          baseURL: useRuntimeConfig().public.baseURL,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-      const mostLatestRes = res.data.value;
-      this.mostLatestDrinks = mostLatestRes;
+        if (res.data.value !== null) {
+          const mostLatestRes = res.data.value;
+          this.mostLatestDrinks = mostLatestRes;
+        } else {
+          throw Error;
+        }
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 });

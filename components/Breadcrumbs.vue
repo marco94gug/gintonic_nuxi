@@ -5,7 +5,7 @@
       <div v-for="(link, index) in links">
         <span>{{ ">" }}</span>
         <li
-          @click="linkClick(link)"
+          @click="(): void => linkClick(link)"
           :style="`${links.length - 1 === index ? styleLinkVisited() : ''}`"
         >
           {{ link }}
@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 const emit = defineEmits<{
-  (event: "OnClickLink", link: string): void;
+  (e: "OnClickLink", link: string): void;
 }>();
 
 defineProps<{
@@ -36,19 +36,20 @@ const linkClick = (link: string): void => {
 <style lang="scss" scoped>
 @import "../styles/utils";
 .breadcrumbs {
-  padding: 20px 0 20px 30px;
+  padding-block: 20px;
+  padding-inline: 20px;
   color: rgb(37, 37, 37);
   font-weight: bold;
   text-transform: capitalize;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 
   ul {
     display: flex;
-    gap: 5px;
+    gap: 3px;
 
     div {
       display: flex;
-      gap: 5px;
+      gap: 3px;
       align-items: center;
     }
 
@@ -69,10 +70,11 @@ const linkClick = (link: string): void => {
   }
 }
 
-@include start-from("desktop") {
+@include start-from(generic-desktop) {
   .breadcrumbs {
     font-size: 1rem;
     padding-left: 30px;
+    padding-block: 30px;
   }
 }
 </style>
