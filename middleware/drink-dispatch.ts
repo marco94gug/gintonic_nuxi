@@ -6,4 +6,5 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   drinkStore.stillLoading("drink", true);
   await drinkStore.loadDrink(id);
+  await drinkStore.loadMostLatestDrinks();
 });

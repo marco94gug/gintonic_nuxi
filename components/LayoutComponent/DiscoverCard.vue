@@ -11,8 +11,6 @@ import { DrinkPayload } from "~/types/drinks";
 const props = defineProps<{
   drinkInfo: DrinkPayload;
 }>();
-
-console.log(props.drinkInfo);
 </script>
 
 <style lang="scss" scoped>
