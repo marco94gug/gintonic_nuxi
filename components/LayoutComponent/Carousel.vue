@@ -144,15 +144,19 @@ const clickCard = (id: string): void => {
       width: 40px;
       border: none;
       border-radius: 100%;
-      background-color: rgb(247, 247, 247);
-      box-shadow: 0 0 4px rgba(0, 0, 0, 0.166);
+      background-color: $greyDark;
+      color: white;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
       cursor: pointer;
       pointer-events: all;
       opacity: 1;
       transition: all 0.15s;
 
       &.inactive {
-        opacity: 0;
+        opacity: 0.4;
+        background-color: $greyTrasparent;
+        color: $greyDark;
+        filter: blur(0.5px);
       }
       .right {
         transform: rotate(-90deg);

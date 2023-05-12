@@ -31,6 +31,10 @@ const handleClickCard = (id: string): void => {
   display: flex;
   align-items: center;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.185);
+  @include start-from(generic-desktop) {
+    height: 75px;
+    width: 230px;
+  }
 
   img {
     height: 100%;
@@ -43,6 +47,9 @@ const handleClickCard = (id: string): void => {
     color: $mainFont;
     font-size: 0.85rem;
     font-weight: 600;
+    @include start-from(generic-desktop) {
+      font-size: 0.95rem;
+    }
   }
 }
 </style>
