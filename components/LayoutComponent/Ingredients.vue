@@ -2,7 +2,7 @@
   <section class="ingredients">
     <h3>Ingredients:</h3>
     <ul class="list">
-      <li v-for="ingredient in drink.ingredients">
+      <li v-for="ingredient in ingredientsChecked">
         {{ ingredient.ingredient }} <span>{{ ingredient.measure }}</span>
       </li>
     </ul>
@@ -15,6 +15,11 @@ import { useDrinksStore } from "~~/stores/drinks";
 
 const drinksStore = useDrinksStore();
 const drink = drinksStore.getDrink as DrinkPayload;
+
+// Sometimes the Proxy can return ingredients with null value
+const ingredientsChecked = drink.ingredients.filter(
+  (item) => item.ingredient !== null
+);
 </script>
 
 <style lang="scss" scoped>
@@ -56,6 +61,7 @@ const drink = drinksStore.getDrink as DrinkPayload;
   .list {
     display: flex;
     flex-direction: column;
+    padding-inline: 20px;
     gap: 10px;
 
     @include start-from(generic-desktop) {
@@ -65,6 +71,7 @@ const drink = drinksStore.getDrink as DrinkPayload;
     }
     li {
       font-weight: 600;
+      color: $mainFont;
 
       &::before {
         content: "";
@@ -74,7 +81,7 @@ const drink = drinksStore.getDrink as DrinkPayload;
         height: 4px;
         background-color: none;
         border-radius: 50%;
-        border: 2px solid $mainFont;
+        border: 2px solid $greySecondary;
         margin-right: 15px;
       }
 
