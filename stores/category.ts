@@ -1,7 +1,8 @@
 import { _AsyncData } from "nuxt/dist/app/composables/asyncData";
 import { defineStore } from "pinia";
+import { uniqBy } from "~/services/uniqBy";
 import { CategoryState, CategoryResponse } from "~~/types/category";
-import { DrinksListResponse } from "~~/types/drinks";
+import { DrinkPayload, DrinksListResponse } from "~~/types/drinks";
 
 export const useCategoryStore = defineStore("category", {
   state: (): CategoryState => ({
@@ -58,7 +59,8 @@ export const useCategoryStore = defineStore("category", {
         const drinkListFilteredByCategory = res.data.value;
 
         if (drinkListFilteredByCategory !== null) {
-          this.filteredByCategory = drinkListFilteredByCategory;
+          const removedDuplicatedRes = uniqBy(drinkListFilteredByCategory);
+          this.filteredByCategory = removedDuplicatedRes;
         } else {
           throw Error;
         }
@@ -80,7 +82,9 @@ export const useCategoryStore = defineStore("category", {
         const results = res.data.value;
 
         if (results !== null) {
-          this.drinksResults = results;
+          const removedDuplicatedRes = uniqBy(results);
+
+          this.drinksResults = removedDuplicatedRes;
         } else {
           throw Error;
         }

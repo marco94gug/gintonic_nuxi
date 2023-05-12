@@ -31,6 +31,8 @@ const handleClickCard = (id: string): void => {
   display: flex;
   align-items: center;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.185);
+  cursor: pointer;
+
   @include start-from(generic-desktop) {
     height: 75px;
     width: 230px;

@@ -39,7 +39,7 @@ const scrollWidth = ref(0);
 
 const router = useRouter();
 
-const props = defineProps<{
+defineProps<{
   dataList: DrinksListResponse;
   title: string;
 }>();

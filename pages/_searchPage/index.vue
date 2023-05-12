@@ -5,13 +5,26 @@
       <h2>{{ title }}</h2>
       <div
         class="grid-drink"
-        v-if="
-          categoryStore.getFilteredByCategory || categoryStore.getDrinksResults
-        "
+        v-if="categoryStore.getFilteredByCategory.length > 0"
       >
         <Card
-          v-for="drink in categoryStore.getFilteredByCategory ??
-          categoryStore.getDrinksResults"
+          v-for="drink in categoryStore.getFilteredByCategory"
+          :route="route"
+          :drinkInfo="drink"
+          @clicked="clickCard"
+        >
+          <template v-slot:see-more>
+            <p class="card-paragraph">see more</p>
+          </template>
+        </Card>
+      </div>
+      <div
+        class="grid-drink"
+        v-else-if="categoryStore.getDrinksResults.length > 0"
+      >
+        <Card
+          v-for="drink in categoryStore.getDrinksResults"
+          :route="route"
           :drinkInfo="drink"
           @clicked="clickCard"
         >
