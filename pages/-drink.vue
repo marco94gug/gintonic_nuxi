@@ -7,6 +7,7 @@
     />
     <section class="drink_main-content">
       <Ingredients />
+      <DiscoverCarousel />
       <div class="description">
         <div class="text-container">
           <p>{{ drink?.strInstructions }}</p>
@@ -35,6 +36,7 @@ import { buildUrlPath } from "~~/services/url";
 import { useDrinksStore } from "~~/stores/drinks";
 import Hero from "~~/components/LayoutComponent/Hero.vue";
 import Ingredients from "~/components/LayoutComponent/Ingredients.vue";
+import DiscoverCarousel from "~/components/LayoutComponent/DiscoverCarousel.vue";
 import { DrinkPayload } from "~/types/drinks";
 
 const drinksStore = useDrinksStore();

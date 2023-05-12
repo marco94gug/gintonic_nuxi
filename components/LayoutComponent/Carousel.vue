@@ -4,7 +4,7 @@
     <div class="carousel-container">
       <div class="carousel" ref="cardScroller">
         <Card
-          v-for="drink in dataListLength(8)"
+          v-for="drink in dataListLength(8, dataList)"
           :drinkInfo="drink"
           @clicked="clickCard"
         />
@@ -29,7 +29,8 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import { DrinkPayload, DrinksListResponse } from "~~/types/drinks";
+import { DrinksListResponse } from "~~/types/drinks";
+import { dataListLength } from "~/services/arrayLength";
 
 const cardScroller = ref<HTMLDivElement | null>(null);
 const clientWidth = ref(1);
@@ -75,9 +76,6 @@ const isMinScrollValue = (): boolean => {
 };
 
 //Methods
-const dataListLength = (n: number): DrinksListResponse => {
-  return props.dataList?.filter((_, i: number) => i < n);
-};
 
 const scrollTo = (direction: string): void => {
   const cardScrollerTarget = cardScroller.value;

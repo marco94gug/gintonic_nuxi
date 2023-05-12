@@ -66,6 +66,7 @@ const drink = drinksStore.getDrink as DrinkPayload;
     }
     li {
       font-weight: 600;
+      color: $mainFont;
 
       &::before {
         content: "";
