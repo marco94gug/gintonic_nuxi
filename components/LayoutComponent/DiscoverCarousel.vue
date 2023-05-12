@@ -5,10 +5,13 @@
     </div>
     <div class="discover-scoller">
       <DiscoverCard
-        v-for="drink in dataListLength(4, mostLatestDrinks)"
+        v-for="drink in dataListLength(4, filteredData)"
         :drink-info="drink"
       />
-      <div class="discover-more-card">
+      <div
+        class="discover-more-card"
+        @click="() => handleDiscoverMoreClick(drink.strCategory)"
+      >
         <p>Seel All</p>
         <i class="pi pi-reply"></i>
       </div>
@@ -16,22 +19,35 @@
   </div>
 </template>
 
-<script type="ts" setup>
-import DiscoverCard from './DiscoverCard.vue';
+<script lang="ts" setup>
+import DiscoverCard from "./DiscoverCard.vue";
+import { useRouter } from "nuxt/app";
 import "primeicons/primeicons.css";
-import { dataListLength } from '~/services/arrayLength';
-import { useDrinksStore } from "~~/stores/drinks";
+import { dataListLength } from "~/services/arrayLength";
+import { useDrinksStore } from "~/stores/drinks";
+import { DrinkPayload } from "~/types/drinks";
+import { useCategoryStore } from "~~/stores/category";
 
-const mostLatestDrinks = useDrinksStore().getMostLatestDrinks;
+const router = useRouter();
+const categoryStore = useCategoryStore();
+const drink = useDrinksStore().getDrink as DrinkPayload;
+
+const filteredData = categoryStore?.filteredByCategory;
+
+const handleDiscoverMoreClick = (category: string): void => {
+  router.push({
+    name: "search-page",
+    query: {
+      category,
+    },
+  });
+};
 </script>
 
 <style lang="scss" scoped>
 @import "../../styles/utils";
 .discover {
   width: 100%;
-  height: 120px;
-  margin-bottom: 20px;
-  //   background-color: rgb(0, 60, 255);
 
   &-head {
     padding-inline: 20px;
@@ -46,9 +62,8 @@ const mostLatestDrinks = useDrinksStore().getMostLatestDrinks;
     display: flex;
     gap: 20px;
     overflow-x: auto;
-    height: 100%;
     align-items: center;
-    padding-inline: 20px;
+    padding: 20px;
 
     &::-webkit-scrollbar {
       display: none;

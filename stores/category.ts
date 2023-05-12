@@ -27,6 +27,7 @@ export const useCategoryStore = defineStore("category", {
     clearDrinksResults() {
       this.drinksResults = [];
     },
+
     //Actions
     async load() {
       try {

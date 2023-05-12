@@ -1,5 +1,5 @@
 <template>
-  <div class="discover-card">
+  <div class="discover-card" @click="() => handleClickCard(drinkInfo.idDrink)">
     <img :src="drinkInfo.strDrinkThumb" :alt="drinkInfo.strDrink" />
     <h5>{{ drinkInfo.strDrink }}</h5>
   </div>
@@ -7,10 +7,17 @@
 
 <script lang="ts" setup>
 import { DrinkPayload } from "~/types/drinks";
+import { useRouter } from "nuxt/app";
 
-const props = defineProps<{
+const router = useRouter();
+
+defineProps<{
   drinkInfo: DrinkPayload;
 }>();
+
+const handleClickCard = (id: string): void => {
+  router.push(`/drink/${id}`);
+};
 </script>
 
 <style lang="scss" scoped>
