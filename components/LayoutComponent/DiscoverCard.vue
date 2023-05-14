@@ -17,6 +17,10 @@ defineProps<{
 
 const handleClickCard = (id: string): void => {
   router.push(`/drink/${id}`);
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 };
 </script>
 
