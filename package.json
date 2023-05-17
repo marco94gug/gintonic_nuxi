@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.16.2",
-    "nuxt": "^3.4.2"
+    "nuxt": "^3.5.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
@@ -19,9 +19,12 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/robots": "^3.0.0",
-    "@pinia/nuxt": "^0.4.7",
-    "pinia": "^2.0.32",
+    "@pinia/nuxt": "^0.4.11",
+    "pinia": "^2.1.1",
     "primeicons": "^6.0.1",
     "sass": "^1.58.3"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
