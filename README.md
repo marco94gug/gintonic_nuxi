@@ -37,3 +37,12 @@ Try some ways to make the best migration from Nuxt2 to Nuxt3
 14. Created `Card` component
 
 15. To consider: Apply a loading state for search-page
+
+16. Implemented the loading state for `drinkPage`
+
+17. Updated the app to Nuxt 3.5.0, founds some problems with pinia, for fixing it i added this property on `package.json`:
+    - ```
+        "overrides": {
+      "vue": "latest"
+      }
+      ```
