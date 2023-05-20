@@ -22,6 +22,7 @@
   justify-content: center;
   align-items: center;
   font-size: 0.85rem;
+  margin-top: 30px;
 
   .urls {
     display: flex;

@@ -10,8 +10,8 @@
     <section class="drink_main-content">
       <Ingredients v-if="!drinksStore.isDrinkLoading" />
       <SIngredients v-else />
-      <DiscoverCarousel />
-      <div class="description">
+      <DiscoverCarousel v-show="!drinksStore.isDrinkLoading" />
+      <div class="description" v-show="!drinksStore.isDrinkLoading">
         <div class="text-container">
           <p>{{ drink?.strInstructions }}</p>
         </div>

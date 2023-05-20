@@ -203,7 +203,6 @@ import { shimmer, toBase64 } from "../../services/Shimmer";
   .hero {
     margin-top: 0;
     height: 40vh;
-    width: 80%;
 
     .title {
       flex-direction: column;

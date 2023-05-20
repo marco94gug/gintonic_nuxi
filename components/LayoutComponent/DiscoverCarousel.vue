@@ -124,9 +124,18 @@ const isMinScrollValue = (): boolean => {
   &-head {
     padding-inline: 20px;
 
+    @include start-from(generic-desktop) {
+      margin-bottom: 20px;
+    }
+
     h4 {
       text-transform: uppercase;
       color: $mainFont;
+
+      @include start-from(generic-desktop) {
+        display: flex;
+        align-items: center;
+      }
     }
 
     .buttons {

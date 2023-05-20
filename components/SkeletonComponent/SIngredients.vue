@@ -20,7 +20,6 @@ import { toBase64, shimmer } from "~/services/Shimmer";
   overflow: hidden;
 
   @include start-from(generic-desktop) {
-    width: 80%;
     margin: 0 auto;
     margin-bottom: 30px;
     margin-top: 76px;
