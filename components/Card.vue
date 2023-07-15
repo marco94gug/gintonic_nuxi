@@ -3,10 +3,12 @@
     :class="`drink_card ${isCategoryFilteredDrink() ? 'category' : ''}`"
     @click="onClick(drinkInfo.idDrink)"
   >
-    <img
+    <nuxt-img
       :class="`img ${isCategoryFilteredDrink() ? 'category' : ''}`"
       :src="drinkInfo.strDrinkThumb"
       :alt="drinkInfo.strDrink"
+      loading="lazy"
+      quality="40"
     />
     <div :class="`drink_info ${isCategoryFilteredDrink() ? 'category' : ''}`">
       <h3>{{ drinkInfo.strDrink }}</h3>

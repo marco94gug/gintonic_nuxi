@@ -1,6 +1,11 @@
 <template>
   <div class="discover-card" @click="() => handleClickCard(drinkInfo.idDrink)">
-    <img :src="drinkInfo.strDrinkThumb" :alt="drinkInfo.strDrink" />
+    <nuxt-img
+      :src="drinkInfo.strDrinkThumb"
+      :alt="drinkInfo.strDrink"
+      loading="lazy"
+      quality="40"
+    />
     <h5>{{ drinkInfo.strDrink }}</h5>
   </div>
 </template>

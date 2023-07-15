@@ -1,27 +1,16 @@
 <template>
-  <section class="hero drink" v-if="true">
+  <section class="hero drink">
     <div>
       <div class="img-container">
-        <img
+        <nuxt-img
           class="drink_title"
           :src="`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`"
         />
 
-        <img
+        <nuxt-img
           class="hero-img-static"
           :src="`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`"
         />
-      </div>
-    </div>
-  </section>
-  <section class="hero" v-else>
-    <div class="title">
-      <h2>TEST</h2>
-    </div>
-    <div>
-      <div class="img-container">
-        <div class="overlay"></div>
-        <img class="hero-img" />
       </div>
     </div>
   </section>

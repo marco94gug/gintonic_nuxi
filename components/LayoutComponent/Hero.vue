@@ -3,7 +3,12 @@
     <div>
       <div class="img-container" style="width: 100vw">
         <h2 class="drink_title">{{ drinkInfo?.strDrink }}</h2>
-        <img class="hero-img-static" :src="drinkInfo?.strDrinkThumb" />
+        <nuxt-img
+          class="hero-img-static"
+          :src="drinkInfo?.strDrinkThumb"
+          loading="lazy"
+          quality="60"
+        />
       </div>
     </div>
   </section>
@@ -30,11 +35,13 @@
       </div>
       <div class="img-container" v-for="drink in topDrinks">
         <div class="overlay" :id="drink.idDrink"></div>
-        <img
+        <nuxt-img
           class="hero-img"
           :style="`right: ${scrollValue}vw`"
           :src="drink.strDrinkThumb"
           :title="drink.strDrink"
+          loading="lazy"
+          quality="60"
         />
       </div>
     </div>
