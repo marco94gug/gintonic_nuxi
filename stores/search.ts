@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { uniqBy } from "~/services/uniqBy";
 import { DrinksListResponse } from "~~/types/drinks";
 
 const useSearchStore = defineStore("search", {
@@ -30,7 +31,9 @@ const useSearchStore = defineStore("search", {
         const resultsDrinks = res.data.value;
 
         if (resultsDrinks !== null) {
-          this.drinksList = resultsDrinks;
+          const removedDuplicatedResults = uniqBy(resultsDrinks);
+
+          this.drinksList = removedDuplicatedResults;
         } else {
           throw Error;
         }

@@ -1,14 +1,17 @@
 <template>
-  <main v-if="!drinksStore.isDrinkLoading">
-    <Hero :drinkInfo="drink" />
+  <main>
+    <Hero :drinkInfo="drink" v-if="!drinksStore.isDrinkLoading" />
+    <SHero v-else />
     <Breadcrumbs
+      v-if="!drinksStore.isDrinkLoading"
       :links="[drink?.strCategory as string, drink?.strDrink as string]"
       @OnClickLink="categoryClick"
     />
     <section class="drink_main-content">
-      <Ingredients />
-      <DiscoverCarousel />
-      <div class="description">
+      <Ingredients v-if="!drinksStore.isDrinkLoading" />
+      <SIngredients v-else />
+      <DiscoverCarousel v-show="!drinksStore.isDrinkLoading" />
+      <div class="description" v-show="!drinksStore.isDrinkLoading">
         <div class="text-container">
           <p>{{ drink?.strInstructions }}</p>
         </div>
@@ -28,7 +31,6 @@
       </div>
     </section>
   </main>
-  <main v-else>sto caricando...</main>
 </template>
 
 <script lang="ts" setup>
@@ -38,6 +40,8 @@ import Hero from "~~/components/LayoutComponent/Hero.vue";
 import Ingredients from "~/components/LayoutComponent/Ingredients.vue";
 import DiscoverCarousel from "~/components/LayoutComponent/DiscoverCarousel.vue";
 import { DrinkPayload } from "~/types/drinks";
+import SIngredients from "~/components/SkeletonComponent/SIngredients.vue";
+import SHero from "~/components/SkeletonComponent/SHero.vue";
 
 const drinksStore = useDrinksStore();
 const drink = drinksStore.getDrink as DrinkPayload;

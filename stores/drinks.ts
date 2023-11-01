@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { uniqBy } from "~/services/uniqBy";
 import {
   DrinksStoreState,
   DrinksListResponse,
@@ -54,9 +55,13 @@ export const useDrinksStore = defineStore("drinks", {
           },
         });
 
-        if (res.data.value !== null) {
-          const topDrinksRes = res.data.value;
-          this.topDrinks = topDrinksRes;
+        const topDrinksRes = res.data.value;
+
+        if (topDrinksRes !== null) {
+          const removedDuplicatedResponses = uniqBy(topDrinksRes);
+
+          this.topDrinks = removedDuplicatedResponses;
+
           this.stillLoading("topDrinks", false);
         } else {
           throw Error;
@@ -92,9 +97,12 @@ export const useDrinksStore = defineStore("drinks", {
           },
         });
 
-        if (res.data.value !== null) {
-          const mostLatestRes = res.data.value;
-          this.mostLatestDrinks = mostLatestRes;
+        const mostLatestRes = res.data.value;
+
+        if (mostLatestRes !== null) {
+          const removedDuplicatedRes = uniqBy(mostLatestRes);
+
+          this.mostLatestDrinks = removedDuplicatedRes;
         } else {
           throw Error;
         }

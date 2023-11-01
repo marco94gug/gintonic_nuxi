@@ -1,9 +1,14 @@
 <template>
-  <div class="drink_card" @click="onClick(drinkInfo.idDrink)">
-    <img
+  <div
+    :class="`drink_card ${isCategoryFilteredDrink() ? 'category' : ''}`"
+    @click="onClick(drinkInfo.idDrink)"
+  >
+    <nuxt-img
       :class="`img ${isCategoryFilteredDrink() ? 'category' : ''}`"
       :src="drinkInfo.strDrinkThumb"
       :alt="drinkInfo.strDrink"
+      loading="lazy"
+      quality="40"
     />
     <div :class="`drink_info ${isCategoryFilteredDrink() ? 'category' : ''}`">
       <h3>{{ drinkInfo.strDrink }}</h3>
@@ -16,10 +21,9 @@
 <script lang="ts" setup>
 import { DrinkPayload } from "~~/types/drinks";
 
-const route = useRoute();
-
-defineProps<{
+const { route } = defineProps<{
   drinkInfo: DrinkPayload;
+  route?: any;
 }>();
 
 const emit = defineEmits<{
@@ -28,7 +32,7 @@ const emit = defineEmits<{
 
 //Computed
 const isCategoryFilteredDrink = (): boolean => {
-  return route.name === "search-page";
+  return route?.name === "search-page";
 };
 
 //Methods
@@ -98,6 +102,13 @@ const onClick = (id: string): void => {
   .drink_card {
     width: 260px;
     height: 260px;
+    transition: 0.35s all;
+
+    &.category {
+      &:hover {
+        transform: translateY(-10px);
+      }
+    }
 
     img {
       width: 100%;

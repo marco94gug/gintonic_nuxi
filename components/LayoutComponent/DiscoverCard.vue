@@ -1,6 +1,11 @@
 <template>
   <div class="discover-card" @click="() => handleClickCard(drinkInfo.idDrink)">
-    <img :src="drinkInfo.strDrinkThumb" :alt="drinkInfo.strDrink" />
+    <nuxt-img
+      :src="drinkInfo.strDrinkThumb"
+      :alt="drinkInfo.strDrink"
+      loading="lazy"
+      quality="40"
+    />
     <h5>{{ drinkInfo.strDrink }}</h5>
   </div>
 </template>
@@ -17,6 +22,10 @@ defineProps<{
 
 const handleClickCard = (id: string): void => {
   router.push(`/drink/${id}`);
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 };
 </script>
 
@@ -31,6 +40,8 @@ const handleClickCard = (id: string): void => {
   display: flex;
   align-items: center;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.185);
+  cursor: pointer;
+
   @include start-from(generic-desktop) {
     height: 75px;
     width: 230px;

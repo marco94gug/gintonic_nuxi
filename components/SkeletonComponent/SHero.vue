@@ -1,47 +1,15 @@
 <template>
-  <section class="hero drink" v-if="$route.name === 'drink'">
+  <section class="hero drink">
     <div>
-      <div class="img-container" style="width: 100vw">
-        <h2 class="drink_title">{{ drinkInfo?.strDrink }}</h2>
+      <div class="img-container">
+        <nuxt-img
+          class="drink_title"
+          :src="`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`"
+        />
+
         <nuxt-img
           class="hero-img-static"
-          :src="drinkInfo?.strDrinkThumb"
-          loading="lazy"
-          quality="60"
-        />
-      </div>
-    </div>
-  </section>
-  <section class="hero" v-else>
-    <div class="title" v-if="topDrinks">
-      <h2>{{ topDrinks[scrollValue / 100]?.strDrink }}</h2>
-      <div class="categories">
-        <span>{{ topDrinks[scrollValue / 100]?.strCategory }}</span>
-        <span>{{ topDrinks[scrollValue / 100]?.strAlcoholic }}</span>
-      </div>
-    </div>
-    <div>
-      <div class="button_container">
-        <button @click="prevPic">
-          <div v-if="scrollValue > 0" class="left">
-            <i class="pi pi-angle-left"></i>
-          </div>
-        </button>
-        <button @click="nextPic">
-          <div v-if="scrollValue < maxValue()" class="right">
-            <i class="pi pi-angle-right"></i>
-          </div>
-        </button>
-      </div>
-      <div class="img-container" v-for="drink in topDrinks">
-        <div class="overlay" :id="drink.idDrink"></div>
-        <nuxt-img
-          class="hero-img"
-          :style="`right: ${scrollValue}vw`"
-          :src="drink.strDrinkThumb"
-          :title="drink.strDrink"
-          loading="lazy"
-          quality="60"
+          :src="`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`"
         />
       </div>
     </div>
@@ -49,31 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import "primeicons/primeicons.css";
-import { DrinkPayload, DrinksListResponse } from "~~/types/drinks";
-
-const scrollValue = ref<number>(100);
-
-const props = defineProps<{
-  topDrinks?: DrinksListResponse;
-  drinkInfo?: DrinkPayload;
-}>();
-
-const maxValue = (): number => {
-  if (props.topDrinks) {
-    return (props.topDrinks?.length - 1) * 100;
-  }
-  return 0;
-};
-
-const nextPic = (): void => {
-  scrollValue.value < maxValue() ? (scrollValue.value += 100) : null;
-};
-
-const prevPic = (): void => {
-  scrollValue.value > 0 ? (scrollValue.value -= 100) : null;
-};
+import { shimmer, toBase64 } from "../../services/Shimmer";
 </script>
 
 <style lang="scss" scoped>
@@ -153,6 +97,7 @@ const prevPic = (): void => {
     .img-container {
       position: relative;
       width: 100vw;
+      overflow: hidden;
 
       .hero-img {
         position: relative;
@@ -215,7 +160,7 @@ const prevPic = (): void => {
 
           @include start-from(generic-desktop) {
             border-radius: 4px;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.715);
+            // box-shadow: 0 0 8px rgba(0, 0, 0, 0.715);
             height: 0;
             flex-grow: 1;
           }
@@ -230,7 +175,9 @@ const prevPic = (): void => {
           font-weight: 800;
           display: block;
           width: fit-content;
-          height: max-content;
+          border-radius: 4px;
+          height: 42px;
+          width: 40%;
 
           @include start-from(generic-desktop) {
             margin-block: 30px;

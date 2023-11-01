@@ -101,6 +101,7 @@ function closeAllOpenedMenus(): void {
 
 <style lang="scss" scoped>
 @import "../styles/utils";
+
 nav {
   position: static;
   top: 0;
@@ -110,7 +111,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
-  background-color: #333333;
+  background-color: $mainDarkGrey;
   height: 80px;
   color: rgb(245, 245, 245);
   font-family: "Big Shoulders Display", Helvetica, sans-serif;
@@ -178,7 +179,7 @@ nav {
       display: flex;
       flex-direction: column;
       gap: 4px;
-      background-color: rgb(28, 28, 28);
+      background-color: $mainBlack;
       width: 100%;
       align-items: center;
       padding: 0;
