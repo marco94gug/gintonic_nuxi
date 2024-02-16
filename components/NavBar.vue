@@ -38,12 +38,12 @@
 </template>
 
 <script lang="ts" setup>
-import { buildUrlPath } from "../services/url";
-import { CategoryPayload } from "../types/category";
+import { buildUrlPath } from "@/services/url";
+import type { CategoryPayload } from "@/types/category";
 
-import { useNavBarStore } from "../stores/navbar";
-import { useCategoryStore } from "~~/stores/category";
-import { useSearchStore } from "~~/stores/search";
+import { useNavBarStore } from "@/stores/navbar";
+import { useCategoryStore } from "@/stores/category";
+import { useSearchStore } from "@/stores/search";
 
 const router = useRouter();
 const navbarStore = useNavBarStore();

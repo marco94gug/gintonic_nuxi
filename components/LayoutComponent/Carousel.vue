@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import { DrinksListResponse } from "~~/types/drinks";
+import type { DrinksListResponse } from "@/types/drinks";
 import { dataListLength } from "~/services/arrayLength";
 
 const cardScroller = ref<HTMLDivElement | null>(null);

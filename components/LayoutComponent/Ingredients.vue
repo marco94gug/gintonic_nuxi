@@ -10,8 +10,8 @@
 </template>
 
 <script lang="ts" setup>
-import { DrinkPayload } from "~/types/drinks";
-import { useDrinksStore } from "~~/stores/drinks";
+import type { DrinkPayload } from "@/types/drinks";
+import { useDrinksStore } from "@/stores/drinks";
 
 const drinksStore = useDrinksStore();
 const drink = drinksStore.getDrink as DrinkPayload;

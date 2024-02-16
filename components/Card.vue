@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import { DrinkPayload } from "~~/types/drinks";
+import type { DrinkPayload } from "@/types/drinks";
 
 const { route } = defineProps<{
   drinkInfo: DrinkPayload;

@@ -1,6 +1,6 @@
-import { useCategoryStore } from "~/stores/category";
-import { DrinkPayload } from "~/types/drinks";
-import { useDrinksStore } from "~~/stores/drinks";
+import { useCategoryStore } from "@/stores/category";
+import type { DrinkPayload } from "@/types/drinks";
+import { useDrinksStore } from "@/stores/drinks";
 
 export default defineNuxtRouteMiddleware(async (to) => {
   const drinkStore = useDrinksStore();

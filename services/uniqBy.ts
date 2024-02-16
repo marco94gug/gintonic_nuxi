@@ -1,4 +1,4 @@
-import { DrinkPayload, DrinksListResponse } from "~/types/drinks";
+import type { DrinkPayload, DrinksListResponse } from "@/types/drinks";
 
 export function uniqBy(a: DrinksListResponse): DrinksListResponse {
   var seen = {} as Record<string, unknown>;

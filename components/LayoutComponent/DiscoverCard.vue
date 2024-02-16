@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import { DrinkPayload } from "~/types/drinks";
+import type { DrinkPayload } from "@/types/drinks";
 import { useRouter } from "nuxt/app";
 
 const router = useRouter();

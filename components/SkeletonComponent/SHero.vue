@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import { shimmer, toBase64 } from "../../services/Shimmer";
+import { shimmer, toBase64 } from "@/services/Shimmer";
 </script>
 
 <style lang="scss" scoped>

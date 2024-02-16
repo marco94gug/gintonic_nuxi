@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts" setup>
-import Carousel from "~~/components/LayoutComponent/Carousel.vue";
-import Hero from "~~/components/LayoutComponent/Hero.vue";
-import { useDrinksStore } from "~~/stores/drinks";
+import Carousel from "@/components/LayoutComponent/Carousel.vue";
+import Hero from "@/components/LayoutComponent/Hero.vue";
+import { useDrinksStore } from "@/stores/drinks";
 
 const drinkStore = useDrinksStore();
 const topDrinks = drinkStore.getTopDrinks;

@@ -34,14 +34,14 @@
 </template>
 
 <script lang="ts" setup>
-import { buildUrlPath } from "~~/services/url";
-import { useDrinksStore } from "~~/stores/drinks";
-import Hero from "~~/components/LayoutComponent/Hero.vue";
-import Ingredients from "~/components/LayoutComponent/Ingredients.vue";
-import DiscoverCarousel from "~/components/LayoutComponent/DiscoverCarousel.vue";
-import { DrinkPayload } from "~/types/drinks";
-import SIngredients from "~/components/SkeletonComponent/SIngredients.vue";
-import SHero from "~/components/SkeletonComponent/SHero.vue";
+import { buildUrlPath } from "@/services/url";
+import { useDrinksStore } from "@/stores/drinks";
+import Hero from "@/components/LayoutComponent/Hero.vue";
+import Ingredients from "@/components/LayoutComponent/Ingredients.vue";
+import DiscoverCarousel from "@/components/LayoutComponent/DiscoverCarousel.vue";
+import type { DrinkPayload } from "@/types/drinks";
+import SIngredients from "@/components/SkeletonComponent/SIngredients.vue";
+import SHero from "@/components/SkeletonComponent/SHero.vue";
 
 const drinksStore = useDrinksStore();
 const drink = drinksStore.getDrink as DrinkPayload;

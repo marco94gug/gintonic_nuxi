@@ -28,9 +28,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import { useNavBarStore } from "~~/stores/navbar";
-import { useSearchStore } from "../stores/search";
+import { useNavBarStore } from "@/stores/navbar";
+import { useSearchStore } from "@/stores/search";
 
 const inputValue = ref<string>("");
 const navbarStore = useNavBarStore();
