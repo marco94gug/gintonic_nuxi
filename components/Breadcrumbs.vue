@@ -34,7 +34,7 @@ const linkClick = (link: string): void => {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/styles/utils";
+@import "../styles/utils";
 .breadcrumbs {
   padding-block: 20px;
   padding-inline: 20px;

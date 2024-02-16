@@ -1,4 +1,4 @@
-import type { DrinksListResponse } from "@/types/drinks";
+import { DrinksListResponse } from "~/types/drinks";
 
 export const dataListLength = (
   n: number,

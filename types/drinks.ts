@@ -39,4 +39,4 @@ interface DrinksStoreState {
   loadingLatestDrinks: boolean;
 }
 
-export type { DrinksStoreState, Ingredients, DrinksListResponse, DrinkPayload };
+export { DrinksStoreState, Ingredients, DrinksListResponse, DrinkPayload };

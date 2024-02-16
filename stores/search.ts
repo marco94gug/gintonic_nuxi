@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { uniqBy } from "~/services/uniqBy";
-import type { DrinksListResponse } from "@/types/drinks";
+import { DrinksListResponse } from "~~/types/drinks";
 
 const useSearchStore = defineStore("search", {
   state: (): { drinksList: DrinksListResponse | [] } => {

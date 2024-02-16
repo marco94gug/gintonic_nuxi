@@ -1,8 +1,8 @@
+import { _AsyncData } from "nuxt/dist/app/composables/asyncData";
 import { defineStore } from "pinia";
-
-import type { CategoryState, CategoryResponse } from "../types/category";
-import type { DrinksListResponse } from "../types/drinks";
-import { uniqBy } from "../services/uniqBy";
+import { uniqBy } from "~/services/uniqBy";
+import { CategoryState, CategoryResponse } from "~~/types/category";
+import { DrinksListResponse } from "~~/types/drinks";
 
 export const useCategoryStore = defineStore("category", {
   state: (): CategoryState => ({

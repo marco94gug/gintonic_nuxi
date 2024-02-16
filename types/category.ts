@@ -12,4 +12,4 @@ type CategoryState = {
   drinksResults: DrinksListResponse | [];
 };
 
-export type { CategoryState, CategoryResponse, CategoryPayload };
+export { CategoryState, CategoryResponse, CategoryPayload };

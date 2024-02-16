@@ -3,4 +3,4 @@ interface NavBarState {
   categoryListIsActive: boolean;
 }
 
-export type { NavBarState };
+export { NavBarState };

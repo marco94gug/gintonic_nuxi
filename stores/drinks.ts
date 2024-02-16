@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
 import { uniqBy } from "~/services/uniqBy";
-import type {
+import {
   DrinksStoreState,
   DrinksListResponse,
   DrinkPayload,
-} from "@/types/drinks";
+} from "~~/types/drinks";
 
 type loadCases = "drink" | "topDrinks" | "latestDrinks";
 

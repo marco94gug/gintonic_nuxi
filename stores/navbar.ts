@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { NavBarState } from "@/types/navBarStatus";
+import { NavBarState } from "~~/types/navBarStatus";
 
 export const useNavBarStore = defineStore("navBar", {
   state: (): NavBarState => {

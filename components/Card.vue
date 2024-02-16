@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { DrinkPayload } from "@/types/drinks";
+import { DrinkPayload } from "~~/types/drinks";
 
 const { route } = defineProps<{
   drinkInfo: DrinkPayload;
@@ -42,7 +42,7 @@ const onClick = (id: string): void => {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/styles/utils";
+@import "../styles/utils";
 .drink_card {
   background-color: rgb(239, 239, 239);
   border-radius: 10px;
