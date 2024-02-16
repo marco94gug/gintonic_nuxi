@@ -1,4 +1,4 @@
-import { useCategoryStore } from "@/stores/category";
+import { useCategoryStore } from "~~/stores/category";
 
 export default defineNuxtRouteMiddleware(async (to) => {
   const categoryStore = useCategoryStore();

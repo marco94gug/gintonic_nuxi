@@ -5,11 +5,11 @@
 </template>
 
 <script lang="ts" setup>
-import { toBase64, shimmer } from "@/services/Shimmer";
+import { toBase64, shimmer } from "~/services/Shimmer";
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/styles/utils";
+@import "~/styles/utils";
 .ingredients {
   width: 100%;
   background-color: $white01;

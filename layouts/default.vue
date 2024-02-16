@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import Footer from "@/components/LayoutComponent/Footer.vue";
+import Footer from "~/components/LayoutComponent/Footer.vue";
 </script>
 
 <style lang="scss" scoped>
