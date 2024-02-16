@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import { DrinkPayload } from "~/types/drinks";
+import type { DrinkPayload } from "@/types/drinks";
 import { useRouter } from "nuxt/app";
 
 const router = useRouter();
@@ -30,7 +30,7 @@ const handleClickCard = (id: string): void => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/utils";
+@import "~/assets/styles/utils";
 .discover-card {
   height: 70px;
   width: 220px;

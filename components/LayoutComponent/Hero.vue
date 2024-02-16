@@ -49,9 +49,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 import "primeicons/primeicons.css";
-import { DrinkPayload, DrinksListResponse } from "~~/types/drinks";
+import type { DrinkPayload, DrinksListResponse } from "@/types/drinks";
 
 const scrollValue = ref<number>(100);
 
@@ -77,7 +76,7 @@ const prevPic = (): void => {
 </script>
 
 <style lang="scss" scoped>
-@import "~/styles/utils";
+@import "~/assets/styles/utils";
 .hero {
   position: relative;
   height: 30vh;

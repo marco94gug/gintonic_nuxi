@@ -35,13 +35,11 @@
 
 <script lang="ts" setup>
 import DiscoverCard from "./DiscoverCard.vue";
-import { useRouter } from "nuxt/app";
 import "primeicons/primeicons.css";
-import { dataListLength } from "~/services/arrayLength";
-import { useDrinksStore } from "~/stores/drinks";
-import { DrinkPayload } from "~/types/drinks";
-import { useCategoryStore } from "~~/stores/category";
-import { ref } from "vue";
+import { dataListLength } from "@/services/arrayLength";
+import { useDrinksStore } from "@/stores/drinks";
+import type { DrinkPayload } from "@/types/drinks";
+import { useCategoryStore } from "@/stores/category";
 
 const router = useRouter();
 const categoryStore = useCategoryStore();
@@ -117,7 +115,7 @@ const isMinScrollValue = (): boolean => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/utils";
+@import "~/assets/styles/utils";
 .discover {
   width: 100%;
 

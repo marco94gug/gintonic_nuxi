@@ -10,8 +10,8 @@
 </template>
 
 <script lang="ts" setup>
-import { DrinkPayload } from "~/types/drinks";
-import { useDrinksStore } from "~~/stores/drinks";
+import type { DrinkPayload } from "@/types/drinks";
+import { useDrinksStore } from "@/stores/drinks";
 
 const drinksStore = useDrinksStore();
 const drink = drinksStore.getDrink as DrinkPayload;
@@ -23,7 +23,7 @@ const ingredientsChecked = drink.ingredients.filter(
 </script>
 
 <style lang="scss" scoped>
-@import "~/styles/utils";
+@import "~/assets/styles/utils";
 .ingredients {
   width: 100%;
   background-color: $white01;

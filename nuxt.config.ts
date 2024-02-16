@@ -4,7 +4,7 @@ import { createCommonJS } from "mlly";
 const { __dirname } = createCommonJS(import.meta.url);
 
 export default defineNuxtConfig({
-  modules: ["@pinia/nuxt", "@nuxt/image"],
+  modules: ["@nuxtjs/robots", "@pinia/nuxt", "@nuxt/image"],
   runtimeConfig: {
     apiSecret: process.env.NUXT_API_SECRET,
     // The private keys which are only available server-side
@@ -17,7 +17,10 @@ export default defineNuxtConfig({
       apiSecret: process.env.NUXT_API_SECRET,
     },
   },
-  css: ["~/styles/global.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
+  css: [
+    "~/assets/styles/global.scss",
+    "@fortawesome/fontawesome-svg-core/styles.css",
+  ],
 
   hooks: {
     "pages:extend"(pages) {
