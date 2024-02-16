@@ -9,7 +9,7 @@ import { toBase64, shimmer } from "@/services/Shimmer";
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/utils";
+@import "~/assets/styles/utils";
 .ingredients {
   width: 100%;
   background-color: $white01;

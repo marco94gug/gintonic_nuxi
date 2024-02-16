@@ -23,7 +23,7 @@ const ingredientsChecked = drink.ingredients.filter(
 </script>
 
 <style lang="scss" scoped>
-@import "~/styles/utils";
+@import "~/assets/styles/utils";
 .ingredients {
   width: 100%;
   background-color: $white01;

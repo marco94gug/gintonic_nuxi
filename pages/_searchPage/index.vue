@@ -94,7 +94,7 @@ const isListResulted = (
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/utils";
+@import "~/assets/styles/utils";
 
 section {
   margin-top: 54px;

@@ -17,7 +17,10 @@ export default defineNuxtConfig({
       apiSecret: process.env.NUXT_API_SECRET,
     },
   },
-  css: ["~/styles/global.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
+  css: [
+    "~/assets/styles/global.scss",
+    "@fortawesome/fontawesome-svg-core/styles.css",
+  ],
 
   hooks: {
     "pages:extend"(pages) {
