@@ -79,7 +79,7 @@ const IDYoutubeVideo = (link: string | null): string | void => {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/styles/utils";
+@import "@/assets/styles/utils";
 
 main {
   margin: auto;

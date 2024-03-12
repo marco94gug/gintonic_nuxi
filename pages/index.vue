@@ -23,7 +23,7 @@ definePageMeta({
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/styles/utils";
+@import "@/assets/styles/utils";
 .main-section {
   display: flex;
   flex-direction: column;

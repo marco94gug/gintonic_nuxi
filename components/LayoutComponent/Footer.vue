@@ -12,7 +12,7 @@
 <script lang="ts" setup></script>
 
 <style lang="scss" scoped>
-@import "~/assets/styles/utils";
+@import "@/assets/styles/utils";
 .footer {
   height: 60px;
   width: 100%;

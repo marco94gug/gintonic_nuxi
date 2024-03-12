@@ -115,7 +115,7 @@ const isMinScrollValue = (): boolean => {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/styles/utils";
+@import "@/assets/styles/utils";
 .discover {
   width: 100%;
 

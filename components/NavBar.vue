@@ -100,7 +100,7 @@ function closeAllOpenedMenus(): void {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/styles/utils";
+@import "@/assets/styles/utils";
 
 nav {
   position: static;

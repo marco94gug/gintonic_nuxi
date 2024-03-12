@@ -102,7 +102,7 @@ const clickCard = (id: string): void => {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/styles/utils";
+@import "@/assets/styles/utils";
 .carousel-title {
   font-size: 1.4rem;
   font-weight: 700;

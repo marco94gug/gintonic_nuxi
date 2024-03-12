@@ -76,7 +76,7 @@ const prevPic = (): void => {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/styles/utils";
+@import "@/assets/styles/utils";
 .hero {
   position: relative;
   height: 30vh;

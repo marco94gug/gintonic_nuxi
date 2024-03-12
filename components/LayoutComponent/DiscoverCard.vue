@@ -30,7 +30,7 @@ const handleClickCard = (id: string): void => {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/styles/utils";
+@import "@/assets/styles/utils";
 .discover-card {
   height: 70px;
   width: 220px;
