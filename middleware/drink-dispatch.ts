@@ -3,16 +3,20 @@ import type { DrinkPayload } from "@/types/drinks";
 import { useDrinksStore } from "@/stores/drinks";
 
 export default defineNuxtRouteMiddleware(async (to) => {
-  const drinkStore = useDrinksStore();
-  const categoryStore = useCategoryStore();
+  try {
+    const drinkStore = useDrinksStore();
+    const categoryStore = useCategoryStore();
 
-  const id = to.params.id as string;
+    const id = to.params.id as string;
 
-  drinkStore.stillLoading("drink", true);
-  await drinkStore.loadDrink(id);
-  await drinkStore.loadMostLatestDrinks();
+    drinkStore.stillLoading("drink", true);
+    await drinkStore.loadDrink(id);
+    await drinkStore.loadMostLatestDrinks();
 
-  const drink = drinkStore.getDrink as DrinkPayload;
+    const drink = drinkStore.getDrink as DrinkPayload;
 
-  await categoryStore.loadCategoryFilter(drink?.strCategory);
+    await categoryStore.loadCategoryFilter(drink?.strCategory);
+  } catch (error) {
+    console.error("Error during loading datas", error);
+  }
 });
