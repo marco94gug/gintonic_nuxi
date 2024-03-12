@@ -1,9 +1,3 @@
 {
-  "builds": [
-    {
-      "src": "clean-cache.sh",
-      "use": "@vercel/node"
-    }
-  ],
   "version": 2
 }
