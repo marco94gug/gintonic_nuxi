@@ -113,6 +113,7 @@ const clickCard = (id: string): void => {
 .carousel-container {
   position: relative;
   padding: 10px 0;
+
   .carousel {
     display: flex;
     gap: 15px;
@@ -120,6 +121,8 @@ const clickCard = (id: string): void => {
     padding-block: 5px;
     overflow-x: scroll;
     box-sizing: border-box;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
 
     &::-webkit-scrollbar {
       display: none;

@@ -193,13 +193,16 @@ const isMinScrollValue = (): boolean => {
     overflow-x: auto;
     align-items: center;
     padding: 20px;
-    @include start-from(generic-desktop) {
-      padding-block: 10px 30px;
-      gap: 30px;
-    }
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
 
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    @include start-from(generic-desktop) {
+      padding-block: 10px 30px;
+      gap: 30px;
     }
   }
 
