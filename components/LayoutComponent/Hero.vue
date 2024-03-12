@@ -1,5 +1,5 @@
 <template>
-  <section class="hero drink" v-if="$route.name === 'drink-id'">
+  <section class="hero drink" v-if="$route.name === 'drink'">
     <div>
       <div class="img-container" style="width: 100vw">
         <h2 class="drink_title">{{ drinkInfo?.strDrink }}</h2>

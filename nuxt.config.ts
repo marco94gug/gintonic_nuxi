@@ -23,11 +23,18 @@ export default defineNuxtConfig({
 
   hooks: {
     "pages:extend"(pages) {
-      pages.push({
-        name: "search-page",
-        path: "/lookup/",
-        file: resolve(__dirname, "pages/_searchPage/index.vue"),
-      });
+      pages.push(
+        {
+          name: "drink",
+          path: "/drink/:id",
+          file: resolve(__dirname, "pages/-drink.vue"),
+        },
+        {
+          name: "search-page",
+          path: "/lookup/",
+          file: resolve(__dirname, "pages/_searchPage/index.vue"),
+        }
+      );
     },
   },
 });
